@@ -1,0 +1,17 @@
+# dependencias
+/node_modules
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# variables de entorno (la plantilla sí se sube)
+.env*
+!.env.example
+
+# varios
+.DS_Store
+.vercel
+npm-debug.log*

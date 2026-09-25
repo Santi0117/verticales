@@ -1,0 +1,49 @@
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
+
+.od-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: -1.25rem;
+  margin-top: -1.25rem;
+  pointer-events: none;
+}
+
+.od-cursor-ring,
+.od-cursor-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+}
+
+.od-cursor-ring {
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid #fff;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.od-cursor-dot {
+  width: 0.35rem;
+  height: 0.35rem;
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+
+.od-cursor.is-hover .od-cursor-ring {
+  transform: translate(-50%, -50%) scale(1.35);
+  opacity: 0.85;
+}
+
+.od-cursor.is-hover .od-cursor-dot {
+  transform: translate(-50%, -50%) scale(0.7);
+}

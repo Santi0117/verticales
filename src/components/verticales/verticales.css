@@ -1,0 +1,2486 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   /empresas/verticales — Onvision verticales
+   Losas oscuras con textura de consola (sibaldesign), titulares que mezclan
+   sans y serif itálica sobre crema (wisprflow) y composición de producto con
+   piezas flotantes y un botón enorme (clarvos). Todo cuelga de .ova para no
+   tocar el resto del sitio.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.ova {
+  --cream: #f4f1ea;
+  --paper: #fbfaf7;
+  --sand: #e9e4d8;
+  --ink: #0b0f17;
+  --ink-2: #111827;
+  --muted: #5f5c56;
+  --line: rgb(11 15 23 / 0.1);
+  --cyan: #5ce1f0;
+  --cyan-ink: #0b7f94;
+  --sun: #ffd64e;
+  --d-text: #eef2f7;
+  --d-soft: #a3adbd;
+  --d-dim: #7d8aa0;
+  --d-line: rgb(148 197 255 / 0.14);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --serif: var(--font-ova-serif), "Times New Roman", serif;
+  --mono: var(--font-geist-mono), ui-monospace, monospace;
+  --nav-w: min(310px, calc(100vw - 72px));
+
+  position: relative;
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+@media (min-width: 768px) {
+  .ova {
+    --nav-w: 560px;
+  }
+}
+
+@media (min-width: 1180px) {
+  .ova {
+    --nav-w: min(1080px, calc(100vw - 160px));
+  }
+}
+
+/* El body del sitio es oscuro: acá el fondo que asoma al rebotar es crema. */
+body:has(.ova) {
+  background: #f4f1ea;
+}
+
+/* El cursor propio del sitio es blanco; con difference se ve en crema y en tinta. */
+body:has(.ova) .od-cursor {
+  mix-blend-mode: difference;
+}
+
+.ova ::selection {
+  background: var(--sun);
+  color: var(--ink);
+}
+
+.ova [id] {
+  scroll-margin-top: 96px;
+}
+
+.ova-wrap {
+  width: min(1200px, 100% - 40px);
+  margin-inline: auto;
+}
+
+/* ── Piezas chicas ───────────────────────────────────────────────────────── */
+
+.ova-mono {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ova-hud {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #9fb0c6;
+}
+
+.ova-hud > i {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+}
+
+.ova-hud--claro {
+  color: var(--muted);
+}
+
+.ova-hud--claro > i {
+  background: var(--cyan-ink);
+  box-shadow: none;
+}
+
+.ova-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 10px;
+  border-radius: 99px;
+  background: #2f9e63;
+  box-shadow: 0 0 0 3px rgb(47 158 99 / 0.18);
+  vertical-align: 1px;
+  animation: ova-pulse 2.2s ease-in-out infinite;
+}
+
+.ova-corners {
+  --c-inset: 16px;
+  --c-size: 14px;
+  --c-color: rgb(148 197 255 / 0.35);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ova-corners > i {
+  position: absolute;
+  width: var(--c-size);
+  height: var(--c-size);
+  border: 0 solid var(--c-color);
+}
+
+.ova-corners > i:nth-child(1) {
+  top: var(--c-inset);
+  left: var(--c-inset);
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.ova-corners > i:nth-child(2) {
+  top: var(--c-inset);
+  right: var(--c-inset);
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.ova-corners > i:nth-child(3) {
+  bottom: var(--c-inset);
+  left: var(--c-inset);
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.ova-corners > i:nth-child(4) {
+  right: var(--c-inset);
+  bottom: var(--c-inset);
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
+
+/* ── Losas oscuras ───────────────────────────────────────────────────────── */
+
+.ova-slab {
+  position: relative;
+  isolation: isolate;
+  margin: 10px;
+  overflow: hidden;
+  border-radius: 34px;
+  background: var(--ink);
+  color: var(--d-text);
+}
+
+@media (max-width: 767px) {
+  .ova-slab {
+    border-radius: 26px;
+  }
+}
+
+.ova-fx {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ova-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 12% -4%, rgb(92 225 240 / 0.17), transparent 62%),
+    radial-gradient(ellipse 42% 42% at 96% 26%, rgb(59 110 255 / 0.13), transparent 62%),
+    radial-gradient(ellipse 80% 50% at 50% 115%, rgb(92 225 240 / 0.07), transparent 70%);
+}
+
+.ova-glow--acento {
+  background:
+    radial-gradient(ellipse 55% 65% at 88% 45%, color-mix(in srgb, var(--acc) 24%, transparent), transparent 70%),
+    radial-gradient(ellipse 50% 50% at 0% 0%, rgb(92 225 240 / 0.1), transparent 62%);
+}
+
+.ova-hatch {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgb(255 255 255 / 0.022) 0 1px,
+    transparent 1px 7px
+  );
+}
+
+.ova-grid-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgb(148 197 255 / 0.14) 1px, transparent 1.4px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(ellipse 70% 60% at 60% 40%, #000 20%, transparent 78%);
+}
+
+/* La muesca: la cápsula del menú queda encajada en el borde de arriba. */
+.ova-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 2;
+  width: calc(var(--nav-w) + 20px);
+  height: 80px;
+  translate: -50% 0;
+  border-radius: 0 0 26px 26px;
+  background: var(--cream);
+}
+
+.ova-notch::before,
+.ova-notch::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 26px;
+  height: 26px;
+}
+
+.ova-notch::before {
+  right: 100%;
+  background: radial-gradient(circle at 0 100%, transparent 25.5px, var(--cream) 26px);
+}
+
+.ova-notch::after {
+  left: 100%;
+  background: radial-gradient(circle at 100% 100%, transparent 25.5px, var(--cream) 26px);
+}
+
+/* ── Menú ────────────────────────────────────────────────────────────────── */
+
+.ova-nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  z-index: 60;
+  width: var(--nav-w);
+  translate: -50% 0;
+}
+
+.ova-nav__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 60px;
+  padding: 0 8px 0 16px;
+  border: 1px solid rgb(11 15 23 / 0.08);
+  border-radius: 18px;
+  background: rgb(244 241 234 / 0.9);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  transition:
+    box-shadow 0.4s var(--ease),
+    border-color 0.4s var(--ease);
+}
+
+.ova-nav[data-bajo="true"] .ova-nav__bar {
+  border-color: rgb(11 15 23 / 0.12);
+  box-shadow: 0 18px 44px -24px rgb(11 15 23 / 0.5);
+}
+
+.ova-nav__brand {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 9px;
+  margin-right: auto;
+  font-size: 17px;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ova-seg {
+  display: none;
+  flex: none;
+  padding: 3px;
+  border-radius: 12px;
+  background: rgb(11 15 23 / 0.06);
+}
+
+.ova-seg > * {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  border-radius: 9px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #4a4843;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+.ova-seg > [aria-current="page"] {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgb(11 15 23 / 0.1);
+}
+
+.ova-seg > a:hover {
+  color: var(--ink);
+}
+
+.ova-nav__links {
+  display: none;
+  align-items: center;
+  gap: 26px;
+  margin-left: 14px;
+  margin-right: 10px;
+}
+
+.ova-nav__links a {
+  font-size: 14px;
+  color: #4a4843;
+  transition: color 0.25s;
+}
+
+.ova-nav__links a:hover {
+  color: var(--ink);
+}
+
+.ova-nav__cta {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 9px;
+  height: 44px;
+  padding: 0 18px 0 16px;
+  border-radius: 13px;
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 14px;
+  font-weight: 550;
+  transition: transform 0.25s var(--ease);
+}
+
+.ova-nav__cta > i {
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+.ova-nav__cta:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 379px) {
+  .ova-nav__bar {
+    gap: 6px;
+    padding-left: 12px;
+  }
+
+  .ova-nav__brand {
+    font-size: 16px;
+  }
+
+  .ova-nav__cta {
+    padding: 0 13px;
+  }
+
+  .ova-nav__cta > i {
+    display: none;
+  }
+}
+
+.ova-nav__menu {
+  display: grid;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 13px;
+  color: var(--ink);
+}
+
+.ova-nav__menu:hover {
+  background: rgb(11 15 23 / 0.06);
+}
+
+.ova-nav__menu > span,
+.ova-nav__menu > span::before,
+.ova-nav__menu > span::after {
+  display: block;
+  width: 18px;
+  height: 1.6px;
+  border-radius: 2px;
+  background: currentColor;
+  transition:
+    transform 0.35s var(--ease),
+    opacity 0.2s;
+}
+
+.ova-nav__menu > span {
+  position: relative;
+}
+
+.ova-nav__menu > span::before,
+.ova-nav__menu > span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.ova-nav__menu > span::before {
+  top: -6px;
+}
+
+.ova-nav__menu > span::after {
+  top: 6px;
+}
+
+.ova-nav__menu > span[data-abierto="true"] {
+  background: transparent;
+}
+
+.ova-nav__menu > span[data-abierto="true"]::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.ova-nav__menu > span[data-abierto="true"]::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.ova-nav__progress {
+  position: absolute;
+  right: 18px;
+  bottom: 0;
+  left: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--cyan), #3b82f6);
+  transform-origin: 0 50%;
+}
+
+.ova-nav__drawer {
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid rgb(11 15 23 / 0.1);
+  border-radius: 18px;
+  background: rgb(244 241 234 / 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 24px 50px -26px rgb(11 15 23 / 0.5);
+  animation: ova-drop 0.35s var(--ease);
+}
+
+.ova-nav__drawer nav a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px;
+  border-radius: 12px;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.ova-nav__drawer nav a:hover {
+  background: rgb(11 15 23 / 0.05);
+}
+
+.ova-nav__drawer-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding: 16px 14px;
+  border-radius: 14px;
+  background: var(--ink);
+  color: var(--cream);
+  font-weight: 550;
+}
+
+@media (min-width: 768px) {
+  .ova-seg {
+    display: flex;
+  }
+
+  .ova-nav__brand {
+    margin-right: 6px;
+  }
+
+  .ova-nav__cta {
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 1180px) {
+  .ova-nav__links {
+    display: flex;
+  }
+
+  .ova-nav__cta {
+    margin-left: 0;
+  }
+
+  .ova-nav__links {
+    margin-left: auto;
+  }
+
+  .ova-nav__menu,
+  .ova-nav__drawer {
+    display: none;
+  }
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+
+.ova-hero {
+  display: flex;
+  flex-direction: column;
+  min-height: max(760px, calc(100svh - 20px));
+  padding-top: 128px;
+}
+
+.ova-hero__inner {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  width: min(1240px, 100% - 44px);
+  margin-inline: auto;
+}
+
+.ova-hero__grid {
+  display: grid;
+  gap: 60px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .ova-hero__grid {
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+    gap: 36px;
+    min-height: 520px;
+  }
+}
+
+.ova-h1 {
+  margin: 26px 0 0;
+  font-size: clamp(2.85rem, min(6.3vw, 10.8vh), 6.2rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.048em;
+  color: #f2f5f9;
+}
+
+.ova-h1 em {
+  margin-top: 0.02em;
+  font-family: var(--serif);
+  font-size: 1.14em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.018em;
+  color: #86e6f3;
+}
+
+/* Cada palabra sube desde detrás de su máscara sin comerse los descendentes. */
+.ova-word {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+  vertical-align: top;
+}
+
+.ova-lead {
+  max-width: 30ch;
+  margin-top: 28px;
+  font-size: clamp(1.08rem, 1.45vw, 1.34rem);
+  line-height: 1.55;
+  color: var(--d-soft);
+}
+
+.ova-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.08em 0.62em 0.12em;
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--ink);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ova-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.ova-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  height: 58px;
+  padding: 0 8px 0 24px;
+  border-radius: 999px;
+  font-size: 15.5px;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  transition:
+    transform 0.3s var(--ease),
+    background 0.3s,
+    border-color 0.3s;
+}
+
+.ova-btn--claro {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.ova-btn--claro:hover {
+  transform: translateY(-2px);
+}
+
+.ova-btn__circle {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--cream);
+  transition: transform 0.45s var(--ease);
+}
+
+.ova-btn--claro:hover .ova-btn__circle {
+  transform: translateY(3px);
+}
+
+.ova-btn--fantasma {
+  padding: 0 26px;
+  border: 1px solid rgb(148 197 255 / 0.26);
+  color: #dfe6f0;
+}
+
+.ova-btn--fantasma:hover {
+  border-color: rgb(148 197 255 / 0.55);
+  background: rgb(148 197 255 / 0.06);
+}
+
+.ova-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 44px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--d-dim);
+}
+
+.ova-meta li[aria-hidden] {
+  color: #36445a;
+}
+
+@media (max-width: 640px) {
+  .ova-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ova-meta li[aria-hidden] {
+    display: none;
+  }
+}
+
+.ova-aviso {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  max-width: 760px;
+  margin-bottom: 30px;
+  padding: 14px 18px;
+  border: 1px solid rgb(255 214 78 / 0.35);
+  border-radius: 14px;
+  background: rgb(255 214 78 / 0.08);
+  color: var(--d-text);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.ova-aviso__titulo {
+  color: var(--sun);
+}
+
+.ova-rail {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: none;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #4a5870;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+}
+
+.ova-rail--izq {
+  left: 20px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.ova-rail--der {
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+@media (min-width: 1400px) {
+  .ova-rail {
+    display: block;
+  }
+
+  .ova-hero__inner {
+    width: min(1240px, 100% - 150px);
+  }
+}
+
+/* ── Composición del hero ────────────────────────────────────────────────── */
+
+.ova-visual {
+  position: relative;
+  perspective: 1600px;
+}
+
+.ova-window {
+  overflow: hidden;
+  border: 1px solid rgb(148 197 255 / 0.16);
+  border-radius: 18px;
+  background: #0f1623;
+  box-shadow:
+    0 50px 110px -44px rgb(0 0 0 / 0.95),
+    0 0 90px -40px color-mix(in srgb, var(--acc) 60%, transparent);
+  transform-style: preserve-3d;
+  transition: box-shadow 0.8s var(--ease);
+}
+
+.ova-window__bar,
+.ova-window__foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  color: #8b98ad;
+}
+
+.ova-window__bar {
+  height: 38px;
+  border-bottom: 1px solid rgb(148 197 255 / 0.1);
+}
+
+.ova-window__foot {
+  height: 40px;
+  border-top: 1px solid rgb(148 197 255 / 0.1);
+}
+
+.ova-window__bar .ova-mono,
+.ova-window__foot .ova-mono {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.ova-dots3 {
+  display: flex;
+  flex: none;
+  gap: 6px;
+}
+
+.ova-dots3 > i {
+  width: 9px;
+  height: 9px;
+  border-radius: 99px;
+  background: rgb(148 197 255 / 0.2);
+}
+
+.ova-dots3 > i:first-child {
+  background: var(--acc);
+  box-shadow: 0 0 10px var(--acc);
+  transition: background 0.6s;
+}
+
+.ova-window__screen {
+  position: relative;
+  aspect-ratio: 3024 / 1718;
+  overflow: hidden;
+  background: #0b0f17;
+}
+
+.ova-ticks {
+  display: flex;
+  flex: 1;
+  gap: 4px;
+  min-width: 60px;
+}
+
+.ova-ticks > i {
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: rgb(148 197 255 / 0.16);
+  transition:
+    background 0.5s,
+    box-shadow 0.5s;
+}
+
+.ova-ticks > i[data-on="true"] {
+  background: var(--acc);
+  box-shadow: 0 0 8px var(--acc);
+}
+
+.ova-card {
+  border-radius: 18px;
+  padding: 16px 18px 18px;
+  box-shadow: 0 34px 70px -30px rgb(0 0 0 / 0.8);
+}
+
+.ova-card__label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  opacity: 0.7;
+}
+
+.ova-card__big {
+  margin-top: 8px;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.ova-card__big > span {
+  margin-left: 3px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  opacity: 0.6;
+}
+
+.ova-card__small {
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  opacity: 0.72;
+}
+
+.ova-card__list {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+  padding-top: 13px;
+  border-top: 1px solid rgb(11 15 23 / 0.1);
+  font-size: 12.5px;
+}
+
+.ova-card__list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ova-card__list svg {
+  flex: none;
+  color: #0b7f94;
+}
+
+.ova-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.ova-card__chips > span {
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgb(11 15 23 / 0.9);
+  color: var(--sun);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ova-card--precio {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.ova-card--pago {
+  background: var(--sun);
+  color: var(--ink);
+}
+
+.ova-card--cuenta {
+  border: 1px solid var(--d-line);
+  background: rgb(16 23 36 / 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--d-text);
+}
+
+.ova-card--cuenta .ova-card__big {
+  margin-top: 0;
+  color: var(--cyan);
+}
+
+.ova-card--cuenta .ova-card__label {
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+.ova-float {
+  animation: ova-float 7s ease-in-out infinite;
+}
+
+.ova-float--lento {
+  animation-duration: 9s;
+  animation-delay: -2s;
+}
+
+.ova-float--corto {
+  animation-duration: 5.5s;
+  animation-delay: -1s;
+}
+
+@media (min-width: 1024px) {
+  .ova-visual {
+    height: clamp(480px, 41vw, 580px);
+  }
+
+  .ova-visual__window {
+    position: absolute;
+    top: 11%;
+    right: -4%;
+    left: 6%;
+  }
+
+  .ova-visual__count {
+    position: absolute;
+    top: -1%;
+    right: 4%;
+    z-index: 3;
+    width: 150px;
+  }
+
+  .ova-visual__pay {
+    position: absolute;
+    top: 38%;
+    right: -7%;
+    z-index: 3;
+    width: 252px;
+  }
+
+  .ova-visual__price {
+    position: absolute;
+    bottom: -2%;
+    left: -9%;
+    z-index: 3;
+    width: 244px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .ova-visual {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .ova-visual__window {
+    grid-column: 1 / -1;
+  }
+
+  .ova-visual__price,
+  .ova-visual__pay {
+    position: relative;
+    z-index: 3;
+    margin-top: -64px;
+  }
+
+  .ova-visual__price {
+    margin-left: 14px;
+  }
+
+  .ova-visual__pay {
+    margin-right: 14px;
+  }
+
+  .ova-visual__count {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .ova-visual {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ova-visual__price {
+    margin: -54px 34px 0 12px;
+  }
+
+  .ova-visual__pay {
+    margin: 0 12px 0 34px;
+  }
+}
+
+/* ── Cinta ───────────────────────────────────────────────────────────────── */
+
+.ova-hero__cinta {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(36px, 5vw, 64px);
+}
+
+.ova-cinta {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.ova-cinta__texto {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+/* ── Secciones claras ────────────────────────────────────────────────────── */
+
+.ova-sec {
+  padding: clamp(84px, 11vw, 150px) 0;
+}
+
+.ova-h2 {
+  font-size: clamp(2.5rem, 5.4vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.ova-h2 em,
+.ova-sechead__title em {
+  font-family: var(--serif);
+  font-size: 1.1em;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.ova-sechead {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.ova-sechead__idx {
+  padding-bottom: 0.9em;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--cyan-ink);
+}
+
+.ova-sechead__title {
+  font-size: clamp(2.6rem, 5.4vw, 4.8rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.ova-sechead__rule {
+  flex: 1;
+  min-width: 40px;
+  height: 1px;
+  margin-bottom: 1.1em;
+  background: var(--line);
+}
+
+.ova-sechead__right {
+  padding-bottom: 0.85em;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+.ova-sechead--oscuro .ova-sechead__idx {
+  color: var(--cyan);
+}
+
+.ova-sechead--oscuro .ova-sechead__rule {
+  background: var(--d-line);
+}
+
+.ova-sechead--oscuro .ova-sechead__right {
+  color: var(--d-dim);
+}
+
+@media (max-width: 767px) {
+  .ova-sechead {
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+
+  .ova-sechead__rule {
+    display: none;
+  }
+
+  .ova-sechead__right {
+    width: 100%;
+    padding-bottom: 0;
+  }
+}
+
+/* ── Pasos ───────────────────────────────────────────────────────────────── */
+
+.ova-pasos {
+  padding-bottom: clamp(56px, 6vw, 84px);
+}
+
+.ova-selector {
+  padding-top: clamp(64px, 8vw, 110px);
+}
+
+.ova-pasos__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.ova-pasos__marco {
+  position: relative;
+  margin-top: clamp(48px, 6vw, 72px);
+}
+
+.ova-pasos__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .ova-pasos__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ova-paso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 34px 26px 40px;
+  border-radius: 28px;
+  background: var(--paper);
+  text-align: center;
+  box-shadow:
+    0 1px 0 rgb(11 15 23 / 0.04),
+    0 24px 50px -40px rgb(11 15 23 / 0.35);
+}
+
+.ova-paso__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  height: 62px;
+  padding: 0 9px 0 22px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.ova-paso__pill .ova-mono {
+  font-size: 10.5px;
+  color: #7d8aa0;
+}
+
+.ova-paso__ico {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.ova-paso p {
+  max-width: 26ch;
+  font-size: 16.5px;
+  line-height: 1.5;
+  color: #3d3b37;
+}
+
+/* El lazo punteado que une los pasos por debajo, como en clarvos. */
+.ova-pasos__lazo {
+  position: absolute;
+  top: 50%;
+  right: -26px;
+  bottom: -30px;
+  left: -26px;
+  border: 1.5px dashed rgb(11 15 23 / 0.22);
+  border-top: 0;
+  border-radius: 0 0 46px 46px;
+  pointer-events: none;
+}
+
+.ova-pasos__lazo::before,
+.ova-pasos__lazo::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  width: 9px;
+  height: 9px;
+  border-top: 1.5px solid rgb(11 15 23 / 0.35);
+  border-right: 1.5px solid rgb(11 15 23 / 0.35);
+}
+
+.ova-pasos__lazo::before {
+  left: -5.5px;
+  transform: rotate(-45deg);
+}
+
+.ova-pasos__lazo::after {
+  right: -5.5px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 899px) {
+  .ova-pasos__lazo {
+    top: 36px;
+    right: -12px;
+    bottom: 36px;
+    left: -12px;
+    border-bottom: 0;
+    border-radius: 0;
+  }
+
+  .ova-pasos__lazo::before,
+  .ova-pasos__lazo::after {
+    display: none;
+  }
+}
+
+/* ── Selector ────────────────────────────────────────────────────────────── */
+
+.ova-sel {
+  display: grid;
+  gap: 28px;
+}
+
+@media (min-width: 1024px) {
+  .ova-sel {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 28px;
+    align-items: start;
+  }
+}
+
+.ova-list {
+  min-width: 0;
+  margin: 0;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--paper);
+}
+
+.ova-rowwrap {
+  position: relative;
+  scroll-margin-top: 100px;
+}
+
+.ova-rowwrap + .ova-rowwrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 22px;
+  left: 22px;
+  height: 1px;
+  background: var(--line);
+  transition: opacity 0.3s;
+}
+
+.ova-rowwrap[data-on="true"]::before,
+.ova-rowwrap[data-on="true"] + .ova-rowwrap::before {
+  opacity: 0;
+}
+
+.ova-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px 46px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 14px 14px 16px;
+  border-radius: 24px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 0.35s var(--ease),
+    color 0.35s var(--ease);
+}
+
+.ova-row:hover {
+  background: rgb(11 15 23 / 0.035);
+}
+
+.ova-row[data-on="true"] {
+  background: var(--ink);
+  color: var(--d-text);
+}
+
+.ova-row:has(input:focus-visible) {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+
+@media (max-width: 479px) {
+  .ova-row {
+    grid-template-columns: 46px minmax(0, 1fr) auto;
+    gap: 12px;
+    padding-left: 12px;
+  }
+
+  .ova-row__code {
+    display: none;
+  }
+}
+
+.ova-row__code {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: #77736b;
+}
+
+.ova-row[data-on="true"] .ova-row__code {
+  color: var(--d-dim);
+}
+
+.ova-row__ico {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 15px;
+  background: color-mix(in srgb, var(--acc) 13%, #fff);
+  color: color-mix(in srgb, var(--acc) 72%, #0b0f17);
+  transition:
+    transform 0.45s var(--ease),
+    background-color 0.35s,
+    color 0.35s;
+}
+
+.ova-row:hover .ova-row__ico {
+  transform: rotate(-7deg) scale(1.06);
+}
+
+.ova-row[data-on="true"] .ova-row__ico {
+  transform: none;
+  background: var(--acc);
+  color: var(--on-acc);
+}
+
+.ova-row__text {
+  min-width: 0;
+}
+
+.ova-row__name {
+  display: block;
+  font-size: 16.5px;
+  font-weight: 550;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.ova-row__sub {
+  display: block;
+  margin-top: 3px;
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: #6b6861;
+}
+
+.ova-row[data-on="true"] .ova-row__sub {
+  color: #97a3b6;
+}
+
+.ova-row__go {
+  display: grid;
+  min-width: 36px;
+  height: 36px;
+  place-items: center;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  color: var(--ink);
+  transition:
+    transform 0.35s var(--ease),
+    background 0.35s,
+    border-color 0.35s,
+    color 0.35s;
+}
+
+.ova-row__go .ova-mono {
+  font-size: 9.5px;
+}
+
+.ova-row:hover .ova-row__go {
+  transform: translateX(2px);
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.ova-row[data-on="true"] .ova-row__go {
+  transform: none;
+  border-color: var(--acc);
+  background: var(--acc);
+  color: var(--on-acc);
+}
+
+.ova-row__bar {
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--acc);
+  box-shadow: 0 0 12px var(--acc);
+}
+
+.ova-reticula {
+  position: absolute;
+  inset: 5px;
+  pointer-events: none;
+}
+
+.ova-reticula .ova-corners {
+  --c-inset: 0px;
+  --c-size: 11px;
+  --c-color: var(--acc);
+}
+
+.ova-row__detalle {
+  display: none;
+  overflow: hidden;
+}
+
+@media (max-width: 1023px) {
+  .ova-row__detalle {
+    display: block;
+  }
+
+  .ova-rowwrap[data-on="true"] {
+    border-radius: 24px;
+    background: var(--ink);
+  }
+
+  .ova-rowwrap[data-on="true"] .ova-row {
+    background: transparent;
+  }
+}
+
+.ova-movil {
+  padding: 4px 14px 16px;
+  color: var(--d-text);
+}
+
+.ova-movil__screen {
+  position: relative;
+  aspect-ratio: 3024 / 1718;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.06),
+    0 28px 50px -30px color-mix(in srgb, var(--acc) 70%, transparent);
+}
+
+.ova-movil__pitch {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--d-soft);
+}
+
+.ova-movil__label {
+  margin: 18px 0 10px;
+  font-size: 10px;
+  color: var(--d-dim);
+}
+
+.ova-movil .ova-accion {
+  width: 100%;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.ova-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ova-chips > li {
+  padding: 7px 12px;
+  border: 1px solid color-mix(in srgb, var(--acc) 45%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--acc) 14%, transparent);
+  color: #e8edf5;
+  font-size: 12.5px;
+  line-height: 1.2;
+}
+
+.ova-accion {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: var(--acc);
+  color: var(--on-acc);
+  font-size: 15px;
+  font-weight: 600;
+  transition:
+    transform 0.3s var(--ease),
+    filter 0.3s,
+    border-color 0.3s;
+}
+
+.ova-accion:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.ova-accion--sec {
+  border: 1px solid rgb(148 197 255 / 0.3);
+  background: transparent;
+  color: var(--d-text);
+}
+
+.ova-accion--sec:hover {
+  border-color: var(--acc);
+  filter: none;
+}
+
+.ova-sel__panel {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .ova-sel__panel {
+    position: sticky;
+    top: 100px;
+    display: block;
+  }
+}
+
+.ova-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgb(148 197 255 / 0.1);
+  border-radius: 30px;
+  background: var(--ink);
+  color: var(--d-text);
+}
+
+.ova-panel::before {
+  content: "";
+  position: absolute;
+  inset: -35% -15% auto;
+  z-index: -1;
+  height: 75%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--acc) 34%, transparent), transparent);
+  opacity: 0.6;
+  transition: background 0.6s;
+}
+
+.ova-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  height: 48px;
+  padding: 0 20px;
+  border-bottom: 1px solid rgb(148 197 255 / 0.1);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8b98ad;
+}
+
+.ova-panel__head b {
+  font-weight: 500;
+  color: var(--d-text);
+}
+
+.ova-panel__status {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.ova-panel__status > i {
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: var(--acc);
+  box-shadow: 0 0 10px var(--acc);
+}
+
+.ova-panel__status[data-estado="elegida"] > i {
+  animation: ova-pulse 1.8s ease-in-out infinite;
+}
+
+.ova-panel__status[data-estado="vista"] > i {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--acc);
+}
+
+.ova-panel__status[data-estado="espera"] > i {
+  background: #7d8aa0;
+  box-shadow: none;
+  animation: ova-blink 1.2s steps(1) infinite;
+}
+
+.ova-panel__body {
+  padding: 18px 20px 22px;
+}
+
+.ova-screen {
+  position: relative;
+  aspect-ratio: 3024 / 1718;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #0d1320;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.06),
+    0 44px 80px -46px color-mix(in srgb, var(--acc) 75%, transparent);
+  transition: box-shadow 0.6s;
+}
+
+.ova-screen__img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.ova-screen__img[data-on="true"] {
+  opacity: 1;
+}
+
+.ova-screen__corners {
+  --c-inset: 10px;
+  --c-size: 12px;
+  --c-color: color-mix(in srgb, var(--acc) 70%, #fff);
+  z-index: 2;
+}
+
+.ova-mosaico {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 26px 24px 20px;
+  background: #0d1320;
+}
+
+.ova-tile {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 7px;
+  color: var(--d-soft);
+  text-align: left;
+}
+
+.ova-tile__img {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgb(148 197 255 / 0.12);
+  border-radius: 9px;
+  transition:
+    transform 0.4s var(--ease),
+    border-color 0.4s,
+    box-shadow 0.4s;
+}
+
+.ova-tile:hover .ova-tile__img {
+  transform: translateY(-3px);
+  border-color: var(--acc);
+  box-shadow: 0 14px 26px -14px var(--acc);
+}
+
+.ova-tile__label {
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ova-tile__label .ova-mono {
+  margin-right: 6px;
+  font-size: 9px;
+  color: #5d6b80;
+}
+
+.ova-panel__name {
+  margin-top: 24px;
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 2.9vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #f6f3ec;
+}
+
+.ova-panel__name em {
+  font-style: italic;
+  color: #86e6f3;
+}
+
+.ova-panel__sub {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--acc) 55%, #fff);
+}
+
+.ova-panel__pitch {
+  max-width: 62ch;
+  margin-top: 14px;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--d-soft);
+}
+
+.ova-panel__label {
+  margin: 20px 0 10px;
+  font-size: 10px;
+  color: var(--d-dim);
+}
+
+.ova-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgb(148 197 255 / 0.1);
+}
+
+.ova-panel__precio {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.ova-panel__precio .ova-mono {
+  font-size: 9.5px;
+  font-weight: 400;
+  color: var(--d-dim);
+}
+
+@media (min-width: 1024px) and (max-height: 820px) {
+  .ova-panel__pitch {
+    display: none;
+  }
+}
+
+/* ── Pago ────────────────────────────────────────────────────────────────── */
+
+.ova-pago {
+  padding: clamp(84px, 10vw, 128px) 0;
+}
+
+.ova-pago__lema {
+  margin: -18px 0 clamp(36px, 5vw, 52px);
+  font-size: clamp(1.45rem, 2.7vw, 2.2rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--d-soft);
+}
+
+.ova-pago__lema em {
+  font-family: var(--serif);
+  font-size: 1.1em;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: var(--d-text);
+}
+
+.ova-pago__grid {
+  display: grid;
+  gap: 26px;
+}
+
+@media (min-width: 1024px) {
+  .ova-pago__grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 44px;
+    align-items: center;
+  }
+}
+
+.ova-recibo {
+  overflow: hidden;
+  border: 1px solid var(--d-line);
+  border-radius: 26px;
+  background: rgb(13 19 31 / 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.ova-recibo__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 22px;
+  border-bottom: 1px solid rgb(148 197 255 / 0.1);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8b98ad;
+}
+
+.ova-recibo__filas {
+  margin: 0;
+}
+
+.ova-recibo__filas > div {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  min-height: 54px;
+  padding: 12px 22px;
+  border-bottom: 1px dashed rgb(148 197 255 / 0.12);
+}
+
+.ova-recibo__filas dt {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--d-dim);
+}
+
+.ova-recibo__filas dd {
+  min-width: 0;
+  margin: 0;
+  font-size: 15.5px;
+  color: var(--d-text);
+}
+
+.ova-recibo__filas > div > dd:only-of-type {
+  grid-column: 2 / -1;
+}
+
+@media (max-width: 560px) {
+  .ova-recibo__filas > div {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 12px;
+    padding: 12px 18px;
+  }
+
+  .ova-recibo__filas dt {
+    grid-column: 1 / -1;
+  }
+
+  .ova-recibo__filas > div > dd:only-of-type {
+    grid-column: 1 / -1;
+  }
+}
+
+.ova-recibo__industria {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 550;
+}
+
+.ova-recibo__ico {
+  display: inline-grid;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--acc);
+  color: var(--on-acc);
+}
+
+.ova-recibo__vacio {
+  font-style: italic;
+  color: var(--d-dim);
+}
+
+.ova-recibo__vacio::after {
+  content: "▍";
+  margin-left: 4px;
+  font-style: normal;
+  color: var(--cyan);
+  animation: ova-blink 1.1s steps(1) infinite;
+}
+
+.ova-recibo__editar button {
+  padding: 7px 11px;
+  border: 1px solid rgb(92 225 240 / 0.3);
+  border-radius: 9px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  transition:
+    background 0.25s,
+    border-color 0.25s;
+}
+
+.ova-recibo__editar button:hover {
+  border-color: var(--cyan);
+  background: rgb(92 225 240 / 0.08);
+}
+
+.ova-recibo__precio {
+  font-size: 18px !important;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.ova-recibo__incluye {
+  padding: 18px 22px 24px;
+}
+
+.ova-recibo__incluye .ova-mono {
+  font-size: 10px;
+  color: var(--d-dim);
+}
+
+.ova-recibo__incluye ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 10px 20px;
+  margin-top: 14px;
+}
+
+.ova-recibo__incluye li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #c3cad6;
+}
+
+.ova-recibo__incluye svg {
+  flex: none;
+  margin-top: 2px;
+  color: color-mix(in srgb, var(--acc) 70%, #fff);
+}
+
+.ova-pago__accion {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ova-pago__eleccion {
+  margin-bottom: 10px;
+}
+
+.ova-pago__eleccion > .ova-mono {
+  font-size: 10.5px;
+  color: var(--d-dim);
+}
+
+.ova-pago__nombre {
+  margin-top: 14px;
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 4.4vw, 4rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+  color: var(--d-text);
+}
+
+.ova-pago__nombre em {
+  font-style: italic;
+  color: color-mix(in srgb, var(--acc) 62%, #fff);
+  transition: color 0.5s;
+}
+
+.ova-pago__sub {
+  max-width: 42ch;
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--d-soft);
+}
+
+/* El botón grande: el círculo se estira y llena la píldora. */
+.ova-cta {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  min-height: 116px;
+  padding: 10px 30px 10px 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--ink);
+  text-align: left;
+  transition:
+    color 0.45s var(--ease),
+    transform 0.3s var(--ease);
+}
+
+.ova-cta::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  z-index: -1;
+  width: 96px;
+  border-radius: 999px;
+  background: var(--acc);
+  transition: width 0.7s var(--ease);
+}
+
+.ova-cta:hover::before,
+.ova-cta:focus-visible::before {
+  width: calc(100% - 20px);
+}
+
+.ova-cta:hover,
+.ova-cta:focus-visible {
+  color: var(--on-acc);
+}
+
+.ova-cta:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 4px;
+}
+
+.ova-cta:disabled {
+  cursor: progress;
+}
+
+.ova-cta__circulo {
+  display: grid;
+  flex: none;
+  width: 96px;
+  height: 96px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--cream);
+  transition: transform 0.55s var(--ease);
+}
+
+.ova-cta:hover .ova-cta__circulo {
+  transform: rotate(45deg);
+}
+
+.ova-cta__texto {
+  font-size: clamp(30px, 3.3vw, 46px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.ova-cta--vacia {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px rgb(148 197 255 / 0.3);
+  color: var(--d-text);
+}
+
+.ova-cta--vacia::before {
+  background: rgb(148 197 255 / 0.12);
+}
+
+.ova-cta--vacia:hover,
+.ova-cta--vacia:focus-visible {
+  color: var(--d-text);
+}
+
+.ova-cta--vacia .ova-cta__circulo {
+  background: rgb(148 197 255 / 0.12);
+  color: var(--d-text);
+}
+
+.ova-cta--vacia:hover .ova-cta__circulo {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 640px) {
+  .ova-cta {
+    gap: 16px;
+    min-height: 88px;
+    padding: 8px 22px 8px 8px;
+  }
+
+  .ova-cta::before {
+    top: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: 72px;
+  }
+
+  .ova-cta:hover::before,
+  .ova-cta:focus-visible::before {
+    width: calc(100% - 16px);
+  }
+
+  .ova-cta__circulo {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+.ova-spinner {
+  width: 34px;
+  height: 34px;
+  border: 2px solid rgb(244 241 234 / 0.2);
+  border-top-color: var(--acc);
+  border-radius: 99px;
+  animation: ova-spin 0.8s linear infinite;
+}
+
+.ova-pago__nota {
+  max-width: 54ch;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #8b98ad;
+}
+
+.ova-pago__error {
+  padding: 12px 16px;
+  border: 1px solid rgb(255 120 120 / 0.35);
+  border-radius: 14px;
+  background: rgb(255 90 90 / 0.08);
+  color: #ffd6d6;
+  font-size: 14px;
+}
+
+/* ── Barra flotante ──────────────────────────────────────────────────────── */
+
+.ova-sticky {
+  position: fixed;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  left: 50%;
+  z-index: 55;
+  width: min(700px, calc(100% - 20px));
+  translate: -50% 0;
+}
+
+.ova-sticky__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 20px;
+  background: rgb(11 15 23 / 0.94);
+  color: var(--d-text);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  box-shadow:
+    0 24px 60px -18px rgb(0 0 0 / 0.55),
+    inset 0 0 0 1px rgb(148 197 255 / 0.14);
+}
+
+.ova-sticky__ico {
+  display: grid;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--acc);
+  color: var(--on-acc);
+}
+
+.ova-sticky__txt {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ova-sticky__nombre {
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 550;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ova-sticky__txt .ova-mono {
+  overflow: hidden;
+  font-size: 9.5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #8b98ad;
+}
+
+.ova-sticky__cambiar {
+  flex: none;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  color: #c3cad6;
+  transition: background 0.25s;
+}
+
+.ova-sticky__cambiar:hover {
+  background: rgb(148 197 255 / 0.1);
+}
+
+.ova-sticky__pagar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 14px;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.25s var(--ease);
+}
+
+.ova-sticky__pagar:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 440px) {
+  .ova-sticky__cambiar {
+    display: none;
+  }
+}
+
+/* ── Pie ─────────────────────────────────────────────────────────────────── */
+
+.ova-foot {
+  padding: clamp(76px, 9vw, 112px) 0 30px;
+  color: var(--ink);
+}
+
+.ova-foot__cols {
+  display: grid;
+  gap: 40px;
+}
+
+@media (min-width: 900px) {
+  .ova-foot__cols {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.ova-foot__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 550;
+  letter-spacing: -0.03em;
+}
+
+.ova-foot__blurb {
+  max-width: 36ch;
+  margin-top: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.ova-foot__parent {
+  margin-top: 12px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.ova-foot__parent a {
+  color: var(--cyan-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ova-foot__title {
+  margin-bottom: 16px;
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
+.ova-foot ul {
+  display: grid;
+  gap: 11px;
+  font-size: 15px;
+}
+
+.ova-foot li a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.ova-foot__word {
+  display: flex;
+  align-items: center;
+  gap: 0.07em;
+  margin: clamp(56px, 8vw, 100px) 0 clamp(22px, 3vw, 34px);
+  font-size: clamp(60px, 18.4vw, 268px);
+  font-weight: 600;
+  line-height: 0.8;
+  letter-spacing: -0.07em;
+  user-select: none;
+}
+
+.ova-foot__word img {
+  flex: none;
+  width: auto;
+  height: 0.5em;
+}
+
+.ova-foot__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ova-foot__bar a:hover {
+  color: var(--ink);
+}
+
+.ova-foot__reloj {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ova-foot__reloj > i {
+  width: 7px;
+  height: 7px;
+  background: var(--cyan-ink);
+}
+
+.ova-foot__reloj time {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Movimiento ──────────────────────────────────────────────────────────── */
+
+@keyframes ova-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes ova-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes ova-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes ova-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ova-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ova *,
+  .ova *::before,
+  .ova *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
