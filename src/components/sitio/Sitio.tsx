@@ -18,7 +18,6 @@ import Nucleo from "./Nucleo";
 import Pasos from "./Pasos";
 import Pie from "./Pie";
 import Precios from "./Precios";
-import Problema from "./Problema";
 import Registro from "./Registro";
 import Showcase from "./Showcase";
 import { industriaPorId, irA } from "./data";
@@ -123,11 +122,10 @@ export default function Sitio({ year }: { year: number }) {
             <Showcase alActivar={activarVertical} />
             <Base />
           </div>
-          <Problema />
+          <Detalle alActivar={activarVertical} />
           <div className="ov-negro">
             <Pasos />
           </div>
-          <Detalle alActivar={activarVertical} />
           <Hud />
           <Precios />
           <Registro alActivar={activarVertical} />

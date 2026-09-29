@@ -30,29 +30,6 @@ export const appsIntro = {
   body: "Todas las empresas comparten facturación electrónica, inventario y pagos. Encima se activan los módulos de tu industria — sin ERP pesado ni consultoría de meses.",
 };
 
-export const problems = [
-  {
-    title: "Facturación electrónica 4.4",
-    description:
-      "Obligatoria por Hacienda (ATV), compleja y que cambia seguido. Los softwares extranjeros tardan en actualizarse; los locales básicos se quedan cortos.",
-  },
-  {
-    title: "CCSS, aguinaldo y liquidaciones",
-    description:
-      "Reglas laborales de Costa Rica que los SaaS internacionales no manejan bien. Terminás reconciliando a mano en Excel.",
-  },
-  {
-    title: "Pagos en CRC y USD",
-    description:
-      "Operar en dos monedas es normal aquí. La mayoría de plataformas extranjeras lo gestiona mal o con atajos frágiles.",
-  },
-  {
-    title: "SINPE Móvil dominante",
-    description:
-      "Es el método de pago del día a día en CR — y casi ningún software internacional lo integra de verdad desde el inicio.",
-  },
-];
-
 export const howItWorks = [
   {
     step: "01",
@@ -345,39 +322,6 @@ export const pricingTiers = [
       "Soporte en español para PYMEs",
       "Sin cobros ocultos por usuario",
     ],
-  },
-];
-
-export const valueProps = [
-  {
-    title: "Local primero",
-    description:
-      "Construido sobre Hacienda y CCSS — no adaptado después de un producto extranjero.",
-  },
-  {
-    title: "Un login, muchas industrias",
-    description:
-      "Si cambiás de giro, cambiás de vertical sin migrar datos ni empezar de cero.",
-  },
-  {
-    title: "Listo hoy",
-    description:
-      "No es consultoría ni ERP pesado. Entrá, configurá y facturá el mismo día.",
-  },
-  {
-    title: "SINPE nativo",
-    description:
-      "El método de pago que ya usan tus clientes, integrado desde el día uno.",
-  },
-  {
-    title: "Precio justo",
-    description:
-      "₡10,500 al mes, todos los sectores. Facturas ilimitadas. Sin cobros ocultos.",
-  },
-  {
-    title: "Verticalización real",
-    description:
-      "El diferenciador no es pelear por $5/mes: es un SaaS distinto por industria sobre el mismo núcleo.",
   },
 ];
 

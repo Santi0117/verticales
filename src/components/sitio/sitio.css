@@ -290,10 +290,6 @@
   box-shadow: 3px 3px 0 var(--ink);
 }
 
-.ov-boton-lila--ancho {
-  width: 100%;
-}
-
 /* ── Chips, rangos y tarjetas de producto (clarvos) ─────────────────────── */
 
 .ov-chip {

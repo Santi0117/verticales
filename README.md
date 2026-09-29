@@ -38,18 +38,18 @@ src/
 │   │   ├── Anuncio.tsx        barra de arriba
 │   │   ├── Nav.tsx            menú flotante
 │   │   ├── Hero.tsx           portada con la palabra que rota y el mosaico
-│   │   ├── Cinta.tsx          cinta: de cuaderno y Excel al núcleo
+│   │   ├── Escaner.tsx        franja: lo de antes pasa por el ojo y sale hecho
 │   │   ├── Listas.tsx         industrias listas (marquesina)
 │   │   ├── Nucleo.tsx         el núcleo y tu giro, en cinco filas
 │   │   ├── Showcase.tsx       por industria: nombre gigante y su pantalla
 │   │   ├── Base.tsx           base común: contador y diagrama
-│   │   ├── Problema.tsx       el problema de los softwares actuales
+│   │   ├── Detalle.tsx        detalle por industria (acordeón)
 │   │   ├── Pasos.tsx          cómo funciona, con el dibujo de puntos
 │   │   ├── Particulas.tsx     el dibujo de puntos (canvas)
-│   │   ├── Detalle.tsx        detalle por industria (acordeón)
-│   │   ├── Hud.tsx            por qué Onvision y la comparativa
+│   │   ├── Hud.tsx            Onvision vs otros (comparativa)
 │   │   ├── Precios.tsx        precio mensual o anual y el plan
 │   │   ├── Registro.tsx       prueba de 15 días
+│   │   ├── ChatPrueba.tsx     Onvi: el chat que arma la prueba
 │   │   ├── Activar.tsx        elegí tu industria y pagá
 │   │   ├── Pie.tsx            pie con el logo grande y la hora de CR
 │   │   ├── Chrome.tsx         escena, película, WhatsApp y barra para pagar

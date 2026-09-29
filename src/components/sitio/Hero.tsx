@@ -4,7 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion, useInView, useMotionValueEvent, useScroll } from "motion/react";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { hero } from "@/lib/content";
-import Cinta from "./Cinta";
+import Escaner from "./Escaner";
 import Streaks from "./Streaks";
 import { Check, Esquinas, Flecha, Tag } from "./ui";
 import { SIZES_CAPTURA, industrias, tinte } from "./data";
@@ -106,8 +106,8 @@ function Collage({ indice }: { indice: number }) {
 /**
  * Portada: el marco oscuro con la muesca del menú (clarvos), el titular
  * gigante en mayúscula (jeffmilanes) con la segunda línea delineada
- * (sibaldesign) y la palabra que rota en amarillo; debajo, la cinta de
- * wisprflow.
+ * (sibaldesign) y la palabra que rota en amarillo; debajo, la franja donde
+ * lo de antes pasa por el ojo de Onvision y sale hecho sistema.
  */
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -245,7 +245,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <Cinta />
+      <Escaner />
     </section>
   );
 }

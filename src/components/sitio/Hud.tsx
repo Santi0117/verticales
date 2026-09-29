@@ -1,12 +1,14 @@
 "use client";
 
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { useMotionValueEvent, useScroll } from "motion/react";
 import { useRef, useState } from "react";
-import { comparisonRows, valueProps } from "@/lib/content";
+import { comparisonRows } from "@/lib/content";
 import Streaks from "./Streaks";
 import { Esquinas, Seccion, Tag } from "./ui";
+import { ESCENAS } from "./data";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
+/** El índice de la comparativa es su número de escena. */
+const INDICE = String(ESCENAS.indexOf("comparativa") + 1).padStart(2, "0");
 
 /** SCROLL 000 → 100 del bloque, en el riel derecho. */
 function Riel({ objetivo }: { objetivo: React.RefObject<HTMLDivElement | null> }) {
@@ -20,9 +22,9 @@ function Riel({ objetivo }: { objetivo: React.RefObject<HTMLDivElement | null> }
 }
 
 /**
- * "Por qué Onvision" y "Comparativa" en el lenguaje de sibaldesign: bloque
- * azul noche con rayado, puntos y estelas; encabezados con índice y regla;
- * las ventajas como su grilla de equipo y la comparativa como su registro.
+ * "Onvision vs otros" en el lenguaje de sibaldesign: bloque azul noche con
+ * rayado, puntos y estelas; encabezado con índice y regla, y la comparativa
+ * como su registro.
  */
 export default function Hud() {
   const bloque = useRef<HTMLDivElement>(null);
@@ -44,41 +46,8 @@ export default function Hud() {
       </p>
       <Esquinas className="ov-hud__esquinas" />
 
-      <section id="por-que" className="ov-hud__sec" aria-labelledby="ov-porque-titulo">
-        <Seccion indice="09">Por qué Onvision</Seccion>
-        <h2 id="ov-porque-titulo" className="ov-hud__h2">
-          <span>El diferenciador es</span>
-          <span className="ov-hud__hueca">la verticalización.</span>
-        </h2>
-
-        <div className="ov-equipo">
-          {valueProps.map((v, i) => (
-            <motion.article
-              key={v.title}
-              className="ov-equipo__card"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.7, ease: EASE, delay: (i % 3) * 0.08 }}
-            >
-              <p className="ov-equipo__cat">VENTAJA.{String(i + 1).padStart(2, "0")}</p>
-              <h3 className="ov-equipo__titulo">{v.title}</h3>
-              <span className="ov-equipo__barra" aria-hidden>
-                <motion.i
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true, amount: 0.6 }}
-                  transition={{ duration: 1.1, ease: EASE, delay: 0.25 + (i % 3) * 0.12 }}
-                />
-              </span>
-              <p className="ov-equipo__desc">{v.description}</p>
-            </motion.article>
-          ))}
-        </div>
-      </section>
-
       <section id="comparativa" className="ov-hud__sec" aria-labelledby="ov-comp-titulo">
-        <Seccion indice="10">Comparativa</Seccion>
+        <Seccion indice={INDICE}>Comparativa</Seccion>
         <h2 id="ov-comp-titulo" className="ov-hud__h2">
           <span>Onvision</span>
           <span className="ov-hud__hueca">vs otros</span>
