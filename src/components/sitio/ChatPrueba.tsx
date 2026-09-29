@@ -201,15 +201,24 @@ export default function ChatPrueba({ alActivar }: { alActivar: (id: string) => v
     setOtra(v ? "" : (dicho ?? ""));
     setPaso("pensando");
     agregar({ de: "yo", texto: dicho ?? v?.nombre ?? "Otra" });
-    if (v && appUrlDeVertical(v.id)) {
-      const listo = "Creás tu cuenta y la prueba de 15 días arranca en el momento.";
-      decir(dicho ? [`Eso entra en ${v.nombre}. ¡Y ya está lista!`, listo] : [`¡${v.nombre} ya está lista! ${listo}`], () => setPaso("lista"));
-    } else if (v) {
-      decir([`${v.nombre} está en lista de espera: te guardamos el lugar y te avisamos apenas esté.`, "¿Cómo te llamás?"], () => setPaso("nombre"));
-    } else {
+    if (!v) {
       decir([dicho ? "Anotado. Lo vemos juntos con el equipo." : "Contame de tu negocio y lo vemos juntos.", "Primero, ¿cómo te llamás?"], () =>
         setPaso("nombre"),
       );
+    } else if (appUrlDeVertical(v.id)) {
+      const listo = "Creás tu cuenta y la prueba de 15 días arranca en el momento.";
+      decir(dicho ? [`Eso entra en ${v.nombre}. ¡Y ya está lista!`, listo] : [`¡${v.nombre} ya está lista! ${listo}`], () => setPaso("lista"));
+    } else if (v.disponible) {
+      // Está incluida, pero este sitio todavía no la activa solo: la prueba la deja lista el equipo.
+      decir(
+        [
+          dicho ? `Eso entra en ${v.nombre}, y está incluida en la prueba.` : `¡Buenísimo! ${v.nombre} está incluida en la prueba.`,
+          "Te la dejamos lista con el equipo. ¿Cómo te llamás?",
+        ],
+        () => setPaso("nombre"),
+      );
+    } else {
+      decir([`${v.nombre} está en lista de espera: te guardamos el lugar y te avisamos apenas esté.`, "¿Cómo te llamás?"], () => setPaso("nombre"));
     }
   };
 
