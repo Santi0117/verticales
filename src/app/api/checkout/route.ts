@@ -40,15 +40,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Industria no válida" }, { status: 400 });
   }
 
+  // Sin llave de Onvo (ni las direcciones de las apps), cobra y revisa la página del sistema.
+  if (!onvoConfigured()) {
+    return NextResponse.json({ url: `${ACTIVAR_RESPALDO}?vertical=${encodeURIComponent(verticalId)}` });
+  }
+
   if (!appUrlDeVertical(verticalId)) {
     return NextResponse.json(
       { error: "Esa industria todavía no está disponible para activar" },
       { status: 400 },
     );
-  }
-
-  if (!onvoConfigured()) {
-    return NextResponse.json({ url: `${ACTIVAR_RESPALDO}?vertical=${encodeURIComponent(verticalId)}` });
   }
 
   const origin = (checkoutOriginFromRequest(request) ?? getSiteUrl()).replace(
