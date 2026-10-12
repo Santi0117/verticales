@@ -89,7 +89,7 @@ export default function Chrome({ elegida }: { elegida: Industria | null }) {
         href={WHATSAPP}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Escribinos por WhatsApp"
+        aria-label="Escríbenos por WhatsApp"
         className="ov-fab"
         data-oculto={barra ? "true" : "false"}
       >

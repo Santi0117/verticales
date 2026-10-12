@@ -128,7 +128,7 @@ export default function Detalle({ alActivar }: { alActivar: (id: string) => void
           <em className="ov-det__h2-serif">cómo Onvision te ayuda de verdad</em>
         </h2>
         <p className="ov-det__lede">
-          Cada vertical activa módulos sobre el mismo núcleo de facturación e inventario. Cambiá de
+          Cada vertical activa módulos sobre el mismo núcleo de facturación e inventario. Cambia de
           giro sin migrar datos.
         </p>
       </div>

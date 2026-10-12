@@ -1,0 +1,250 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   El motor: el sistema abierto pieza por pieza (el prototipo /vision de la
+   landing). Pantalla pegada mientras se baja; el fondo, la tinta y las
+   líneas cambian juntos (negro → azul noche → crema → negro) y cada pieza
+   lleva su nombre en una pastilla de consola con punto amarillo.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.ov-motor {
+  position: relative;
+  height: 380vh;
+}
+
+.ov-motor__pantalla {
+  --m-fondo: #000;
+  --m-tinta: #f8fafc;
+  --m-suave: rgb(248 250 252 / 0.6);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  border-radius: 36px;
+  background: var(--m-fondo);
+  color: var(--m-tinta);
+}
+
+.ov-motor__lienzo {
+  position: absolute;
+  inset: 0;
+}
+
+.ov-motor__texto {
+  position: absolute;
+  z-index: 2;
+  left: clamp(20px, 5vw, 72px);
+  top: clamp(104px, 17vh, 160px);
+  max-width: min(400px, 30vw);
+}
+
+.ov-motor__texto > .ov-mono {
+  color: var(--m-suave);
+}
+
+.ov-motor__h2 {
+  margin-top: 18px;
+  font-family: var(--f-display);
+  font-size: clamp(30px, 3.2vw, 52px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.ov-motor__h2 span {
+  display: block;
+}
+
+.ov-motor__lede {
+  max-width: 38ch;
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--m-suave);
+}
+
+/* Los nombres al lado de cada pieza (solo en compu). */
+.ov-motor__etiquetas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.ov-motor__etiqueta {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  justify-items: start;
+  gap: 5px;
+  width: max-content;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.ov-motor__etiqueta.is-izq {
+  justify-items: end;
+  text-align: right;
+}
+
+.ov-motor__pastilla {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 8px;
+  border: 1px solid color-mix(in srgb, var(--m-tinta) 18%, transparent);
+  border-radius: 999px;
+  background: var(--m-fondo);
+  box-shadow: 0 8px 22px rgb(0 0 0 / 0.22);
+  white-space: nowrap;
+}
+
+.ov-motor__etiqueta.is-izq .ov-motor__pastilla {
+  flex-direction: row-reverse;
+  padding: 5px 8px 5px 12px;
+}
+
+.ov-motor__pastilla i,
+.ov-motor__lista i {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sun);
+  box-shadow: 0 0 0 3px rgb(255 214 78 / 0.25);
+}
+
+.ov-motor__pastilla b {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* El contador de piezas, debajo del texto. */
+.ov-motor__pie {
+  display: flex;
+  margin-top: 28px;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--m-suave);
+}
+
+.ov-motor__pie span:nth-child(2) {
+  color: var(--m-tinta);
+}
+
+.ov-motor__pie i {
+  width: 44px;
+  height: 1px;
+  margin-inline: 8px;
+  background: currentColor;
+}
+
+.ov-motor__lista {
+  display: none;
+}
+
+/* ── Celular: el motor se abre hacia abajo y los nombres van en una lista ── */
+
+@media (max-width: 767px) {
+  .ov-motor {
+    height: 300vh;
+  }
+
+  .ov-motor__pantalla {
+    border-radius: 24px;
+  }
+
+  .ov-motor__texto {
+    left: 18px;
+    right: 18px;
+    top: calc(env(safe-area-inset-top, 0px) + 104px);
+    max-width: none;
+  }
+
+  .ov-motor__h2 {
+    margin-top: 12px;
+    font-size: clamp(26px, 8vw, 34px);
+  }
+
+  .ov-motor__lede,
+  .ov-motor__etiquetas {
+    display: none;
+  }
+
+  .ov-motor__lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ov-motor__lista li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px 5px 7px;
+    border: 1px solid color-mix(in srgb, var(--m-tinta) 20%, transparent);
+    border-radius: 999px;
+    background: var(--m-fondo);
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate3d(-8px, 14px, 0) scale(0.72);
+    transform-origin: left center;
+  }
+
+  .ov-motor__lista.is-on li {
+    animation: ov-motor-chip 0.78s cubic-bezier(0.2, 1.18, 0.32, 1) var(--d, 0s) both;
+  }
+
+  .ov-motor__lista i {
+    width: 5px;
+    height: 5px;
+    box-shadow: 0 0 0 2px rgb(255 214 78 / 0.25);
+  }
+
+  .ov-motor__pie {
+    display: none;
+  }
+}
+
+@keyframes ov-motor-chip {
+  0% {
+    opacity: 0;
+    transform: translate3d(-10px, 16px, 0) scale(0.7) rotate(-5deg);
+    filter: blur(8px);
+  }
+  62% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(1px, -3px, 0) scale(1.06) rotate(0.4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ov-motor__lista.is-on li {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

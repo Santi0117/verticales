@@ -20,15 +20,15 @@ import {
 const AVISOS: Record<string, { titulo: string; texto: string }> = {
   cancelado: {
     titulo: "Pago cancelado",
-    texto: "Cancelaste el pago. Podés elegir de nuevo la industria e intentarlo.",
+    texto: "Cancelaste el pago. Puedes elegir de nuevo la industria e intentarlo.",
   },
   error: {
     titulo: "Pago sin confirmar",
-    texto: "No pudimos confirmar el pago. Si te cobraron, escribinos a soporte con el correo que usaste en Onvo.",
+    texto: "No pudimos confirmar el pago. Si te cobraron, escríbenos a soporte con el correo que usaste en Onvo.",
   },
   pendiente: {
     titulo: "Pago sin confirmar",
-    texto: "No pudimos confirmar el pago. Si te cobraron, escribinos a soporte con el correo que usaste en Onvo.",
+    texto: "No pudimos confirmar el pago. Si te cobraron, escríbenos a soporte con el correo que usaste en Onvo.",
   },
 };
 
@@ -96,13 +96,13 @@ export default function Activar({
     <section id="activar" ref={seccionRef} className="ov-activar" aria-labelledby="ov-activar-titulo" style={tinte(elegida)}>
       <div className="ov-activar__head">
         <Mono>Activación</Mono>
-        <h2 id="ov-activar-titulo" className="ov-activar__h2" aria-label="Activá el software de tu industria">
-          <span aria-hidden>Activá el software de tu </span>
+        <h2 id="ov-activar-titulo" className="ov-activar__h2" aria-label="Activa el software de tu industria">
+          <span aria-hidden>Activa el software de tu </span>
           <s aria-hidden>empresa</s>
           <span aria-hidden> industria.</span>
         </h2>
         <p className="ov-activar__lede">
-          Elegí tu industria, pagá <b>{precioMensual}</b> con tarjeta y creás tu cuenta. Todas las
+          Elige tu industria, paga <b>{precioMensual}</b> con tarjeta y creas tu cuenta. Todas las
           industrias están listas para activar.
         </p>
       </div>
@@ -116,7 +116,7 @@ export default function Activar({
 
       <div className="ov-activar__grid">
         <fieldset id="ov-lista" className="ov-panel ov-activar__lista" tabIndex={-1}>
-          <legend className="sr-only">Elegí tu industria</legend>
+          <legend className="sr-only">Elige tu industria</legend>
           <Tag derecha={`${listas} / ${industrias.length} LISTAS`}>PASO 01 · TU INDUSTRIA</Tag>
           <div className="ov-activar__opciones">
             {industrias.map((v) => (
@@ -144,7 +144,7 @@ export default function Activar({
                 <p className="ov-activar__sistema">{elegida.producto}</p>
               </>
             ) : (
-              <p className="ov-activar__vacio">Elegí una industria</p>
+              <p className="ov-activar__vacio">Elige una industria</p>
             )}
           </div>
 
@@ -215,7 +215,7 @@ export default function Activar({
             <span className="ov-gigante__circ">
               <Flecha dir="arriba" className="h-[42%] w-[42%]" />
             </span>
-            <span className="ov-gigante__texto">Elegí una industria</span>
+            <span className="ov-gigante__texto">Elige una industria</span>
           </button>
         )}
 
@@ -223,10 +223,10 @@ export default function Activar({
           {elegida && lista ? (
             <>
               Al pagar te llevamos al checkout de Onvo (Visa, Mastercard, Amex y SINPE). Cuando el cobro
-              quede confirmado, creás tu cuenta en {elegida.nombre} y entrás con la suscripción activa.
+              quede confirmado, creas tu cuenta en {elegida.nombre} y entras con la suscripción activa.
             </>
           ) : elegida ? (
-            <>{elegida.nombre} está casi listo — dejanos tu correo y te avisamos primero.</>
+            <>{elegida.nombre} está casi listo — déjanos tu correo y te avisamos primero.</>
           ) : (
             <>El resumen aparece cuando elijas tu industria arriba.</>
           )}

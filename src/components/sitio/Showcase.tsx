@@ -67,7 +67,7 @@ function Movil({ alActivar }: { alActivar: (id: string) => void }) {
 
   return (
     <div className="ov-movil" style={tinte(x.industria)}>
-      <div ref={fila} className="ov-movil__fila" role="group" aria-label="Elegí una industria">
+      <div ref={fila} className="ov-movil__fila" role="group" aria-label="Elige una industria">
         {escenas.map((e, n) => (
           <button
             key={e.id}

@@ -118,11 +118,35 @@ export function tinte(v: Pick<Industria, "acento" | "sobreAcento"> | null) {
   } as CSSProperties;
 }
 
+/** De qué lado de su pieza va cada nombre en el motor (en compu). */
+export type LadoPieza = "arriba" | "abajo" | "izq" | "der";
+
+/** "El motor": el sistema abierto pieza por pieza, de adelante hacia atrás. */
+export const MOTOR = {
+  antetitulo: "El motor · pieza por pieza",
+  titulo: ["El sistema completo,", "pieza por pieza."],
+  bajada:
+    "Todas las industrias corren sobre el mismo motor: facturación 4.4, inventario, SINPE y Onvi IA. Eliges tu industria y el resto ya viene armado.",
+  pie: "Sigue bajando y se abre",
+  piezas: [
+    { id: "vista", nombre: "Vista en vivo", detalle: "Tablero y reportes al instante", lado: "izq" },
+    { id: "onvi", nombre: "Onvi IA", detalle: "Responde clientes y te ayuda a operar", lado: "abajo" },
+    { id: "nucleo", nombre: "Núcleo", detalle: "El mismo motor para toda industria", lado: "arriba" },
+    { id: "facturacion", nombre: "Facturación 4.4", detalle: "Facturas electrónicas, tiquetes y notas", lado: "abajo" },
+    { id: "inventario", nombre: "Inventario", detalle: "Existencias, compras y alertas", lado: "arriba" },
+    { id: "sinpe", nombre: "SINPE Móvil", detalle: "Cobros que se concilian solos", lado: "abajo" },
+    { id: "web", nombre: "Web y tienda", detalle: "Tu marca vendiendo en línea", lado: "arriba" },
+    { id: "industria", nombre: "Tu industria", detalle: "Restaurantes, clínicas, retail y más", lado: "der" },
+    { id: "base", nombre: "Sistema Onvision", detalle: `${precioMensual}, todo incluido`, lado: "der" },
+  ],
+} as const;
+
 /** Las secciones, en orden: alimentan el contador de escenas. */
 export const ESCENAS = [
   "inicio",
   "industrias-listas",
   "hecho",
+  "motor",
   "industrias-imagenes",
   "modulos",
   "industrias",

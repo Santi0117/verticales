@@ -171,7 +171,7 @@ function VisualIa() {
         <span className="ov-chip ov-chip--violeta">IA</span>
       </div>
       <p className="ov-burbuja ov-burbuja--onvi">
-        Esta semana el margen se te fue en 3 SKUs. Reponé café 250 g antes del viernes.
+        Esta semana el margen se te fue en 3 SKUs. Repón café 250 g antes del viernes.
       </p>
       <p className="ov-burbuja ov-burbuja--yo">¿Y si bajo precio en varilla?</p>
       <p className="ov-escribiendo" aria-hidden>

@@ -21,11 +21,11 @@ export const sectores: Sector[] = [
     name: "Retail",
     detail: "POS · inventario · caja",
     panelBody:
-      "POS, carrito y cobro en un solo flujo — escaneá, cobrá con SINPE o tarjeta y seguí vendiendo.",
+      "POS, carrito y cobro en un solo flujo — escanea, cobra con SINPE o tarjeta y sigue vendiendo.",
     specs: [
       {
         title: "POS con código de barras",
-        description: "Buscá o escaneá productos y cobrá sin salir del mostrador.",
+        description: "Busca o escanea productos y cobra sin salir del mostrador.",
       },
       {
         title: "Carrito y multi-pago",
@@ -37,7 +37,7 @@ export const sectores: Sector[] = [
       },
       {
         title: "Cliente en la venta",
-        description: "Asociá el tiquete al cliente y mantené el historial de compras.",
+        description: "Asocia el tiquete al cliente y mantén el historial de compras.",
       },
     ],
     highlight: {
@@ -50,11 +50,11 @@ export const sectores: Sector[] = [
     name: "Constructoras",
     detail: "Obra · avance · costos",
     panelBody:
-      "Proyectos, avance físico y presupuesto en un solo panel — sabé qué obra va y qué requiere acción.",
+      "Proyectos, avance físico y presupuesto en un solo panel — sabe qué obra va y qué requiere acción.",
     specs: [
       {
         title: "Avance de obra por etapas",
-        description: "Seguí el % físico y vinculalo a facturación parcial del contrato.",
+        description: "Sigue el % físico y vincúlalo a facturación parcial del contrato.",
       },
       {
         title: "Presupuesto y ejecutado",
@@ -62,7 +62,7 @@ export const sectores: Sector[] = [
       },
       {
         title: "Órdenes de compra",
-        description: "Aprobá OC y materiales sin perder el rastro por obra.",
+        description: "Aprueba OC y materiales sin perder el rastro por obra.",
       },
       {
         title: "Cobros y alertas del día",
@@ -79,7 +79,7 @@ export const sectores: Sector[] = [
     name: "Restaurantes",
     detail: "Mesas · cocina · cobro",
     panelBody:
-      "Pase de cocina, mesas y caja del turno — sabé qué pedido va atrasado antes de que se queje el cliente.",
+      "Pase de cocina, mesas y caja del turno — sabe qué pedido va atrasado antes de que se queje el cliente.",
     specs: [
       {
         title: "Pase de cocina",
@@ -87,7 +87,7 @@ export const sectores: Sector[] = [
       },
       {
         title: "POS y mesas",
-        description: "Tomá la orden y pasala a cocina sin papel ni gritos.",
+        description: "Toma la orden y pásala a cocina sin papel ni gritos.",
       },
       {
         title: "Caja del turno",
@@ -120,7 +120,7 @@ export const sectores: Sector[] = [
       },
       {
         title: "Búsqueda de pacientes",
-        description: "Encontrá al paciente y abrí la cita en segundos.",
+        description: "Encuentra al paciente y abre la cita en segundos.",
       },
       {
         title: "Cobro programado",
@@ -149,11 +149,11 @@ export const sectores: Sector[] = [
       },
       {
         title: "Agendar visita",
-        description: "Programá visitas desde la ficha sin salir del flujo.",
+        description: "Programa visitas desde la ficha sin salir del flujo.",
       },
       {
         title: "Compartir e imprimir",
-        description: "Mandá la ficha al cliente o imprimila en un clic.",
+        description: "Manda la ficha al cliente o imprímela en un clic.",
       },
     ],
     highlight: {
@@ -175,7 +175,7 @@ export const sectores: Sector[] = [
     name: "Ganadería",
     detail: "Lotes · ventas",
     panelBody:
-      "Cabezas por lote, tratamientos y ventas — con factura cuando cobrás.",
+      "Cabezas por lote, tratamientos y ventas — con factura cuando cobras.",
     specs: [],
     highlight: null,
   },

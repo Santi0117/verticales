@@ -1,7 +1,7 @@
 export const navLinks = [
   { label: "Cómo funciona", href: "#como-funciona" },
   { label: "Industrias", href: "#industrias-imagenes" },
-  { label: "Compará", href: "#comparativa" },
+  { label: "Compara", href: "#comparativa" },
   { label: "Precios", href: "#precios" },
 ];
 
@@ -33,21 +33,21 @@ export const appsIntro = {
 export const howItWorks = [
   {
     step: "01",
-    title: "Elegí tu industria",
+    title: "Elige tu industria",
     description:
-      "Restaurante, constructora, bienes raíces, clínica, retail, ganadería, agricultura o taller. Activás la vertical que necesitás — el núcleo ya viene incluido.",
+      "Restaurante, constructora, bienes raíces, clínica, retail, ganadería, agricultura o taller. Activas la vertical que necesitas — el núcleo ya viene incluido.",
   },
   {
     step: "02",
-    title: "Personalizá",
+    title: "Personaliza",
     description:
       "Logo, datos de la empresa, cédula jurídica, moneda preferida y preferencias de cobro. Sin implementaciones de 3 meses.",
   },
   {
     step: "03",
-    title: "Empezá a facturar",
+    title: "Empieza a facturar",
     description:
-      "Emití facturas electrónicas, controlá inventario y cobrá con SINPE. Si cambiás de giro, cambiás de vertical sin migrar datos.",
+      "Emite facturas electrónicas, controla inventario y cobra con SINPE. Si cambias de giro, cambias de vertical sin migrar datos.",
   },
 ];
 
@@ -59,12 +59,12 @@ export const verticals = [
     icon: "restaurant" as const,
     image: "/sectors/restaurantes.svg",
     pitch:
-      "Dejá de pelear entre mesas, cocina y caja. Onvision une POS, comandas e IVA de comida preparada en un flujo pensado para el servicio real en Costa Rica.",
+      "Deja de pelear entre mesas, cocina y caja. Onvision une POS, comandas e IVA de comida preparada en un flujo pensado para el servicio real en Costa Rica.",
     helps: [
-      "Acelerá el servicio: el mesero toma la orden en el POS y la cocina la ve al instante, con modificadores claros.",
-      "Cerrá caja sin Excel: propinas, medios de pago y SINPE quedan cuadrados al final del turno.",
-      "Facturá bien desde el primer día: IVA diferenciado (13% comida preparada) alineado con Hacienda 4.4.",
-      "Controlá merma e inventario de insumos críticos sin un ERP pesado.",
+      "Acelera el servicio: el mesero toma la orden en el POS y la cocina la ve al instante, con modificadores claros.",
+      "Cierra caja sin Excel: propinas, medios de pago y SINPE quedan cuadrados al final del turno.",
+      "Factura bien desde el primer día: IVA diferenciado (13% comida preparada) alineado con Hacienda 4.4.",
+      "Controla merma e inventario de insumos críticos sin un ERP pesado.",
     ],
     features: [
       "POS táctil para mesas",
@@ -81,12 +81,12 @@ export const verticals = [
     icon: "retail" as const,
     image: "/sectors/retail.svg",
     pitch:
-      "Vendé más y perdé menos stock. El núcleo de facturación e inventario se adapta a tu tipo de tienda — no al revés.",
+      "Vende más y pierde menos stock. El núcleo de facturación e inventario se adapta a tu tipo de tienda — no al revés.",
     helps: [
-      "Cobrá rápido en mostrador con código de barras, multi-moneda y SINPE en el mismo flujo.",
-      "Recibí alertas de stock mínimo antes de que se te acabe lo que más se vende.",
-      "Organizá proveedores y órdenes de compra sin perder el hilo de costos.",
-      "Separá categorías por giro (ferretería, salón, boutique) manteniendo la misma caja.",
+      "Cobra rápido en mostrador con código de barras, multi-moneda y SINPE en el mismo flujo.",
+      "Recibe alertas de stock mínimo antes de que se te acabe lo que más se vende.",
+      "Organiza proveedores y órdenes de compra sin perder el hilo de costos.",
+      "Separa categorías por giro (ferretería, salón, boutique) manteniendo la misma caja.",
     ],
     features: [
       "POS con lector de código de barras",
@@ -104,10 +104,10 @@ export const verticals = [
     pitch:
       "Agenda, expediente y cobro en un solo lugar. Menos llamadas perdidas, menos papeles y facturación electrónica lista para Hacienda.",
     helps: [
-      "Reducí no-shows con agenda clara, recordatorios y estados de cita visibles para recepción.",
-      "Tené el historial del paciente a mano en la consulta — sin buscar carpetas.",
-      "Cobrás consulta o procedimiento y emitís factura 4.4 al momento.",
-      "Separá flujos para medicina, dental, vet o fisio sin cambiar de sistema.",
+      "Reduce no-shows con agenda clara, recordatorios y estados de cita visibles para recepción.",
+      "Ten el historial del paciente a mano en la consulta — sin buscar carpetas.",
+      "Cobras consulta o procedimiento y emites factura 4.4 al momento.",
+      "Separa flujos para medicina, dental, vet o fisio sin cambiar de sistema.",
     ],
     features: [
       "Agendamiento de citas",
@@ -125,10 +125,10 @@ export const verticals = [
     pitch:
       "Los plazos en Costa Rica no perdonan. Onvision te ayuda a llevar expedientes, feriados y protocolo sin hojas sueltas.",
     helps: [
-      "Calculá plazos en días hábiles con feriados de CR para no perder audiencias ni vencimientos.",
-      "Organizá protocolo, instrumentos e índices quincenales en un solo panel.",
+      "Calcula plazos en días hábiles con feriados de CR para no perder audiencias ni vencimientos.",
+      "Organiza protocolo, instrumentos e índices quincenales en un solo panel.",
       "Dale seguimiento a sociedades y sus vencimientos antes de que se te pasen.",
-      "Facturá honorarios con electrónica 4.4 y controlá cartera de clientes.",
+      "Factura honorarios con electrónica 4.4 y controla cartera de clientes.",
     ],
     features: [
       "Plazos en días hábiles, con feriados de CR",
@@ -146,10 +146,10 @@ export const verticals = [
     pitch:
       "De la cotización al avance de obra con costos bajo control. Menos sorpresas en materiales y subcontratos.",
     helps: [
-      "Seguí el avance por etapas y vinculalo a facturación parcial según el contrato.",
-      "Centralizá cotizaciones, órdenes de compra y materiales por proyecto.",
-      "Controlá subcontratistas y entregables sin perder el rastro de pagos.",
-      "Mantené CRC/USD claros cuando comprás insumos importados.",
+      "Sigue el avance por etapas y vincúlalo a facturación parcial según el contrato.",
+      "Centraliza cotizaciones, órdenes de compra y materiales por proyecto.",
+      "Controla subcontratistas y entregables sin perder el rastro de pagos.",
+      "Mantén CRC/USD claros cuando compras insumos importados.",
     ],
     features: [
       "Avance de obra por etapas",
@@ -167,10 +167,10 @@ export const verticals = [
     pitch:
       "Cartera, leads y comisiones en un solo sistema — listo para cerrar y facturar en CR.",
     helps: [
-      "Publicá y filtrá propiedades en cartera sin perder el estado de cada una.",
+      "Publica y filtra propiedades en cartera sin perder el estado de cada una.",
       "Dale seguimiento a leads y visitas hasta el cierre.",
-      "Generá contratos de compraventa o alquiler con menos fricción.",
-      "Liquidá comisiones por agente con trazabilidad clara.",
+      "Genera contratos de compraventa o alquiler con menos fricción.",
+      "Liquida comisiones por agente con trazabilidad clara.",
     ],
     features: [
       "Propiedades en cartera",
@@ -186,12 +186,12 @@ export const verticals = [
     icon: "livestock" as const,
     image: "/sectors/ganaderia.svg",
     pitch:
-      "Sabé qué tenés en el campo, qué se trató y qué se vendió — con factura electrónica cuando cobrás.",
+      "Sabe qué tienes en el campo, qué se trató y qué se vendió — con factura electrónica cuando cobras.",
     helps: [
-      "Registrá cabezas por lote y mové inventario sin perder el conteo.",
-      "Llevá vacunas y tratamientos con historial por animal o grupo.",
-      "Gestioná ventas de ganado y documentos en el mismo flujo.",
-      "Revisá reportes de producción para decidir con datos, no con memoria.",
+      "Registra cabezas por lote y mueve inventario sin perder el conteo.",
+      "Lleva vacunas y tratamientos con historial por animal o grupo.",
+      "Gestiona ventas de ganado y documentos en el mismo flujo.",
+      "Revisa reportes de producción para decidir con datos, no con memoria.",
     ],
     features: [
       "Registro de cabezas por lote",
@@ -209,10 +209,10 @@ export const verticals = [
     pitch:
       "Costos por ciclo, insumos y ventas con factura 4.4: claridad desde la parcela hasta el cobro.",
     helps: [
-      "Mapeá parcelas y cultivos activos en una vista simple.",
-      "Asigná insumos y costos por ciclo para saber si el cultivo rinde.",
-      "Planificá cosechas y ventana de venta con menos improvisación.",
-      "Emití factura electrónica al vender la producción.",
+      "Mapea parcelas y cultivos activos en una vista simple.",
+      "Asigna insumos y costos por ciclo para saber si el cultivo rinde.",
+      "Planifica cosechas y ventana de venta con menos improvisación.",
+      "Emite factura electrónica al vender la producción.",
     ],
     features: [
       "Parcelas y cultivos",
@@ -230,10 +230,10 @@ export const verticals = [
     pitch:
       "Órdenes de trabajo, historial por placa y repuestos bajo control — del presupuesto a la factura.",
     helps: [
-      "Abrí órdenes de trabajo con diagnóstico, estado y responsable.",
-      "Consultá historial por placa o número de serie en segundos.",
-      "Mandá presupuestos a aprobación antes de gastar repuestos.",
-      "Descontá inventario de piezas al cerrar el trabajo y facturá al cliente.",
+      "Abre órdenes de trabajo con diagnóstico, estado y responsable.",
+      "Consulta historial por placa o número de serie en segundos.",
+      "Manda presupuestos a aprobación antes de gastar repuestos.",
+      "Descuenta inventario de piezas al cerrar el trabajo y factura al cliente.",
     ],
     features: [
       "Órdenes de trabajo",
@@ -249,11 +249,11 @@ export const verticals = [
     icon: "personal" as const,
     image: "/sectors/personal.svg",
     pitch:
-      "Aguinaldo, marchamo y la cuesta de enero en un solo lugar. Presupuesto, deudas y metas para vos o para el hogar — sin mezclar con Hacienda.",
+      "Aguinaldo, marchamo y la cuesta de enero en un solo lugar. Presupuesto, deudas y metas para ti o para el hogar — sin mezclar con Hacienda.",
     helps: [
-      "Anticipá la cuesta de enero: marchamo, matrículas y útiles contra el aguinaldo.",
-      "Presupuestá el mes con sobres o la guía 50/30/20, sin inflar reportes con transferencias.",
-      "Salí de deudas con avalancha o bola de nieve — y mirá cuánto cuesta la diferencia.",
+      "Anticipa la cuesta de enero: marchamo, matrículas y útiles contra el aguinaldo.",
+      "Presupuesta el mes con sobres o la guía 50/30/20, sin inflar reportes con transferencias.",
+      "Sal de deudas con avalancha o bola de nieve — y mira cuánto cuesta la diferencia.",
       "Modo solo yo o hogar compartido. Sin cédula ni FE: esto no es un negocio ante ATV.",
     ],
     features: [
@@ -317,7 +317,7 @@ export const pricingTiers = [
       "Facturas electrónicas ilimitadas",
       "Inventario completo",
       "SINPE Móvil y multi-moneda",
-      "Módulos de la industria que elegís",
+      "Módulos de la industria que eliges",
       "Reportes básicos de IVA",
       "Soporte en español para PYMEs",
       "Sin cobros ocultos por usuario",
@@ -327,7 +327,7 @@ export const pricingTiers = [
 
 export const sectorShowcase = {
   eyebrow: "El núcleo y tu giro",
-  title: "Facturá, controlá stock, mirá la caja — y decidí con datos de tu industria.",
+  title: "Factura, controla stock, mira la caja — y decide con datos de tu industria.",
   cards: [
     {
       id: "fe",
@@ -380,7 +380,7 @@ export const sectorShowcase = {
 export const waitlist = {
   title: "Empieza gratis 15 días",
   subtitle:
-    "Sin tarjeta obligatoria. Contanos tu industria y te abrimos acceso. Onvision se adapta a tu empresa — no al revés.",
+    "Sin tarjeta obligatoria. Cuéntanos tu industria y te abrimos acceso. Onvision se adapta a tu empresa — no al revés.",
   benefits: [
     "Acceso completo a tu vertical durante la prueba",
     "Onboarding en español para PYMEs",

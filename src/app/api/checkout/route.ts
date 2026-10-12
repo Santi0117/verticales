@@ -12,20 +12,17 @@ import { getSiteUrl } from "@/lib/site-url";
 export const runtime = "nodejs";
 
 /**
+ * Mientras este proyecto no tenga ONVO_SECRET_KEY, el pago se hace en la
+ * página de activación del sistema (que ya cobra con Onvo), con la
+ * industria ya elegida. Con la llave puesta en Vercel, se cobra acá.
+ */
+const ACTIVAR_RESPALDO = "https://sistema.onvisiondigital.com/activar";
+
+/**
  * Crea un link de checkout Onvo (un solo uso) para la suscripción mensual.
  * Body: { verticalId: string }
  */
 export async function POST(request: Request) {
-  if (!onvoConfigured()) {
-    return NextResponse.json(
-      {
-        error:
-          "Onvo no está configurado. Agregá ONVO_SECRET_KEY en .env.local / Vercel.",
-      },
-      { status: 503 },
-    );
-  }
-
   let body: { verticalId?: string };
   try {
     body = await request.json();
@@ -48,6 +45,10 @@ export async function POST(request: Request) {
       { error: "Esa industria todavía no está disponible para activar" },
       { status: 400 },
     );
+  }
+
+  if (!onvoConfigured()) {
+    return NextResponse.json({ url: `${ACTIVAR_RESPALDO}?vertical=${encodeURIComponent(verticalId)}` });
   }
 
   const origin = (checkoutOriginFromRequest(request) ?? getSiteUrl()).replace(

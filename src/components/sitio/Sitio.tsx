@@ -13,6 +13,7 @@ import Detalle from "./Detalle";
 import Hero from "./Hero";
 import Hud from "./Hud";
 import Listas from "./Listas";
+import Motor from "./Motor";
 import Nav from "./Nav";
 import Nucleo from "./Nucleo";
 import Pasos from "./Pasos";
@@ -119,6 +120,7 @@ export default function Sitio({ year }: { year: number }) {
           <Listas />
           <Nucleo />
           <div className="ov-negro">
+            <Motor />
             <Showcase alActivar={activarVertical} />
             <Base />
           </div>

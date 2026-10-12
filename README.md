@@ -41,6 +41,8 @@ src/
 │   │   ├── Escaner.tsx        franja: lo de antes pasa por el ojo y sale hecho
 │   │   ├── Listas.tsx         industrias listas (marquesina)
 │   │   ├── Nucleo.tsx         el núcleo y tu giro, en cinco filas
+│   │   ├── Motor.tsx          el motor: el sistema se abre pieza por pieza (3D)
+│   │   ├── motor/escena.ts    la escena three.js del motor (se carga aparte)
 │   │   ├── Showcase.tsx       por industria: nombre gigante y su pantalla
 │   │   ├── Base.tsx           base común: contador y diagrama
 │   │   ├── Detalle.tsx        detalle por industria (acordeón)

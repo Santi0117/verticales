@@ -19,8 +19,8 @@ const esCorreo = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
 /** Lo que pide el cuadro de abajo en cada paso (en los demás se elige con botones). */
 const PIDE: Partial<Record<Paso, { placeholder: string; tipo: "text" | "email"; auto: string }>> = {
-  industria: { placeholder: "O escribí tu industria", tipo: "text", auto: "off" },
-  nombre: { placeholder: "Escribí tu nombre", tipo: "text", auto: "name" },
+  industria: { placeholder: "O escribe tu industria", tipo: "text", auto: "off" },
+  nombre: { placeholder: "Escribe tu nombre", tipo: "text", auto: "name" },
   correo: { placeholder: "tu@correo.com", tipo: "email", auto: "email" },
   empresa: { placeholder: "Nombre de tu empresa", tipo: "text", auto: "organization" },
 };
@@ -137,7 +137,7 @@ export default function ChatPrueba({ alActivar }: { alActivar: (id: string) => v
       ([e]) => {
         if (!e?.isIntersecting) return;
         io.disconnect();
-        decir(["¡Hola! Soy Onvi, el asistente de Onvision.", "Te dejo lista tu prueba de 15 días en un minuto. ¿En qué industria trabajás?"], () =>
+        decir(["¡Hola! Soy Onvi, el asistente de Onvision.", "Te dejo lista tu prueba de 15 días en un minuto. ¿En qué industria trabajas?"], () =>
           setPaso("industria"),
         );
       },
@@ -202,23 +202,23 @@ export default function ChatPrueba({ alActivar }: { alActivar: (id: string) => v
     setPaso("pensando");
     agregar({ de: "yo", texto: dicho ?? v?.nombre ?? "Otra" });
     if (!v) {
-      decir([dicho ? "Anotado. Lo vemos juntos con el equipo." : "Contame de tu negocio y lo vemos juntos.", "Primero, ¿cómo te llamás?"], () =>
+      decir([dicho ? "Anotado. Lo vemos juntos con el equipo." : "Cuéntame de tu negocio y lo vemos juntos.", "Primero, ¿cómo te llamas?"], () =>
         setPaso("nombre"),
       );
     } else if (appUrlDeVertical(v.id)) {
-      const listo = "Creás tu cuenta y la prueba de 15 días arranca en el momento.";
+      const listo = "Creas tu cuenta y la prueba de 15 días arranca en el momento.";
       decir(dicho ? [`Eso entra en ${v.nombre}. ¡Y ya está lista!`, listo] : [`¡${v.nombre} ya está lista! ${listo}`], () => setPaso("lista"));
     } else if (v.disponible) {
       // Está incluida, pero este sitio todavía no la activa solo: la prueba la deja lista el equipo.
       decir(
         [
           dicho ? `Eso entra en ${v.nombre}, y está incluida en la prueba.` : `¡Buenísimo! ${v.nombre} está incluida en la prueba.`,
-          "Te la dejamos lista con el equipo. ¿Cómo te llamás?",
+          "Te la dejamos lista con el equipo. ¿Cómo te llamas?",
         ],
         () => setPaso("nombre"),
       );
     } else {
-      decir([`${v.nombre} está en lista de espera: te guardamos el lugar y te avisamos apenas esté.`, "¿Cómo te llamás?"], () => setPaso("nombre"));
+      decir([`${v.nombre} está en lista de espera: te guardamos el lugar y te avisamos apenas esté.`, "¿Cómo te llamas?"], () => setPaso("nombre"));
     }
   };
 
@@ -239,21 +239,21 @@ export default function ChatPrueba({ alActivar }: { alActivar: (id: string) => v
     setPaso("pensando");
     if (ahora === "nombre") {
       if (v.length < 2) {
-        decir(["¿Me lo escribís completo?"], () => setPaso("nombre"));
+        decir(["¿Me lo escribes completo?"], () => setPaso("nombre"));
         return;
       }
       setDatos((d) => ({ ...d, nombre: v }));
       decir([`Mucho gusto, ${v.split(/\s+/)[0]}. ¿A qué correo te escribimos?`], () => setPaso("correo"));
     } else if (ahora === "correo") {
       if (!esCorreo(v)) {
-        decir(["Ese correo parece incompleto. ¿Lo revisás?"], () => setPaso("correo"));
+        decir(["Ese correo parece incompleto. ¿Lo revisas?"], () => setPaso("correo"));
         return;
       }
       setDatos((d) => ({ ...d, correo: v }));
       decir(["Perfecto. ¿Y cómo se llama tu empresa?"], () => setPaso("empresa"));
     } else {
       if (v.length < 2) {
-        decir(["¿Me escribís el nombre completo de la empresa?"], () => setPaso("empresa"));
+        decir(["¿Me escribes el nombre completo de la empresa?"], () => setPaso("empresa"));
         return;
       }
       setDatos((d) => ({ ...d, empresa: v }));
@@ -284,7 +284,7 @@ export default function ChatPrueba({ alActivar }: { alActivar: (id: string) => v
   };
 
   /** Vuelve a la pregunta de la industria (lo ya conversado queda arriba). */
-  const otraVez = (etiqueta: string, respuesta = "Dale, empecemos de nuevo. ¿En qué industria trabajás?") => {
+  const otraVez = (etiqueta: string, respuesta = "Dale, empecemos de nuevo. ¿En qué industria trabajas?") => {
     relojes.current.splice(0).forEach((r) => window.clearTimeout(r));
     setEscribiendo(false);
     setIndustria(null);
@@ -410,7 +410,7 @@ export default function ChatPrueba({ alActivar }: { alActivar: (id: string) => v
               Activar mi prueba
               <Flecha className="h-4 w-4" />
             </button>
-            <button type="button" className="ov-chat__link" onClick={() => otraVez("Elegir otra industria", "Dale. ¿En qué industria trabajás?")}>
+            <button type="button" className="ov-chat__link" onClick={() => otraVez("Elegir otra industria", "Dale. ¿En qué industria trabajas?")}>
               Elegir otra industria
             </button>
           </motion.div>

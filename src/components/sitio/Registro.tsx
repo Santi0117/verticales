@@ -14,7 +14,7 @@ export default function Registro({ alActivar }: { alActivar: (id: string) => voi
   return (
     <section id="registro" className="ov-registro" aria-labelledby="ov-registro-titulo">
       <div className="ov-registro__head">
-        <p className="ov-eyebrow">Empezá hoy</p>
+        <p className="ov-eyebrow">Empieza hoy</p>
         <h2 id="ov-registro-titulo" className="ov-serif-h2">
           Empieza gratis <em>15 días</em>
         </h2>
@@ -34,13 +34,13 @@ export default function Registro({ alActivar }: { alActivar: (id: string) => voi
               </li>
             ))}
           </ul>
-          <p className="ov-caja__nota">No necesitás tarjeta de crédito · Acceso en menos de 24 h</p>
+          <p className="ov-caja__nota">No necesitas tarjeta de crédito · Acceso en menos de 24 h</p>
         </div>
 
         <div className="ov-caja__der ov-caja__der--chat">
           <ChatPrueba alActivar={alActivar} />
           <p className="ov-caja__pie">
-            o escribinos a <a href={`mailto:${site.email}`}>{site.email}</a>
+            o escríbenos a <a href={`mailto:${site.email}`}>{site.email}</a>
           </p>
         </div>
       </div>

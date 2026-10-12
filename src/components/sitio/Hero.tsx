@@ -237,7 +237,7 @@ export default function Hero() {
           </div>
 
           <a href="#industrias-listas" className="ov-hero__bajar">
-            Bajá para recorrer
+            Baja para recorrer
             <span aria-hidden>
               <Flecha dir="abajo" className="h-3.5 w-3.5" />
             </span>

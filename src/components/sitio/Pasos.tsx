@@ -10,17 +10,17 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const N = howItWorks.length;
 
 /** La palabra gigante de cada paso. */
-const PALABRA = ["Elegí", "Personalizá", "Facturá"];
+const PALABRA = ["Elige", "Personaliza", "Factura"];
 
 /** La consola que se va llenando, un renglón por paso. */
 const CONSOLA = [
-  "elegí la vertical que necesitás — el núcleo ya viene incluido",
+  "elige la vertical que necesitas — el núcleo ya viene incluido",
   "logo, cédula jurídica, moneda y cobros — sin implementaciones de 3 meses",
-  "facturá, controlá inventario y cobrá con SINPE",
+  "factura, controla inventario y cobra con SINPE",
 ];
 
 const TITULO = "Tres pasos. Sin consultoría eterna.";
-const LEDE = "Entrá, elegí tu industria y empezá a facturar. Onvision se adapta a tu empresa — no al revés.";
+const LEDE = "Entra, elige tu industria y empieza a facturar. Onvision se adapta a tu empresa — no al revés.";
 
 /**
  * "Cómo funciona" como "At the machine" de jeffmilanes: el dibujo de puntos
