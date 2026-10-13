@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import CustomCursor from "@/components/CustomCursor";
+import { SITIO } from "@/lib/site-url";
 import { fontVariables } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITIO),
+  alternates: { canonical: "/" },
   icons: {
     icon: [{ url: "/logo-icon.svg", type: "image/svg+xml" }],
   },

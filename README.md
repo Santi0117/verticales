@@ -76,9 +76,25 @@ suave, ni animaciones.
 
 ## Publicarla en Vercel
 
-1. En Vercel: **Add New → Project** e importá este repositorio.
-2. Cargá las variables de `.env.example` en **Settings → Environment Variables**.
-3. Asignale su propio dominio (por ejemplo `verticales.onvisiondigital.com`).
+1. En Vercel: **Add New → Project** e importa este repositorio.
+2. Carga las variables de `.env.example` en **Settings → Environment Variables**.
+3. Su dominio es `sistema.onvisiondigital.com` (antes lo tenía el proyecto
+   `onvision-landing`, el sistema anterior, que sigue publicado en
+   `onvision-landing.vercel.app`).
+
+### Lo que viene del sistema anterior
+
+En `sistema.onvisiondigital.com` antes estaba el sistema anterior, así que sus
+direcciones viejas siguen andando (`next.config.ts`):
+
+- `/activar` (con `?vertical=…`) y `/producto` caen en esta página; con
+  `?vertical=` se abre Activar con esa industria elegida.
+- Los avisos de pago que lleguen acá (`/api/webhooks/…` de Onvo y
+  `/api/pagos/…` de TiloPay) pasan tal cual al sistema anterior, que es el que
+  los atiende.
+- Mientras este proyecto no tenga `ONVO_SECRET_KEY`, el botón Pagar lleva a la
+  página de activar del sistema anterior (`onvision-landing.vercel.app/activar`),
+  que ya cobra con Onvo.
 
 ## Qué sale del sitio
 

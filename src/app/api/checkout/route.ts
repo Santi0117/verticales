@@ -7,16 +7,53 @@ import {
   createOnvoOneTimeLink,
   onvoConfigured,
 } from "@/lib/onvo";
-import { getSiteUrl } from "@/lib/site-url";
+import { SISTEMA_ANTERIOR, SITIO, getSiteUrl } from "@/lib/site-url";
 
 export const runtime = "nodejs";
 
 /**
- * Mientras este proyecto no tenga ONVO_SECRET_KEY, el pago se hace en la
- * página de activación del sistema (que ya cobra con Onvo), con la
- * industria ya elegida. Con la llave puesta en Vercel, se cobra acá.
+ * Si el sistema anterior no contesta, su página de activar, con la industria
+ * ya elegida. Va por su dirección de Vercel: sistema.onvisiondigital.com
+ * ahora es esta página.
  */
-const ACTIVAR_RESPALDO = "https://sistema.onvisiondigital.com/activar";
+const ACTIVAR_RESPALDO = `${SISTEMA_ANTERIOR}/activar`;
+
+/** A dónde vuelve el cliente: la dirección desde la que pagó, si es de esta página. */
+function origenPropio(request: Request) {
+  try {
+    const { hostname, origin } = new URL(checkoutOriginFromRequest(request) ?? "");
+    const propio =
+      hostname === new URL(SITIO).hostname ||
+      (hostname.startsWith("verticales") && hostname.endsWith(".vercel.app")) ||
+      hostname === "localhost";
+    if (propio) return origin;
+  } catch {}
+  return SITIO;
+}
+
+/**
+ * Mientras este proyecto no tenga ONVO_SECRET_KEY, el link de pago lo arma
+ * el sistema anterior, que ya cobra con Onvo (lo mismo que hace
+ * onvisiondigital.com). Le pasamos esta dirección como origen, así el
+ * cliente vuelve acá al terminar o al cancelar.
+ */
+async function linkDelSistemaAnterior(verticalId: string, origen: string): Promise<string | null> {
+  try {
+    const res = await fetch(`${SISTEMA_ANTERIOR}/api/checkout`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Origin: origen },
+      body: JSON.stringify({ verticalId }),
+      cache: "no-store",
+      signal: AbortSignal.timeout(15000),
+    });
+    const data = (await res.json().catch(() => ({}))) as { url?: string };
+    if (res.ok && data.url) return data.url;
+    console.error("[checkout] sistema anterior", res.status);
+  } catch (err) {
+    console.error("[checkout] sistema anterior", err instanceof Error ? err.message : err);
+  }
+  return null;
+}
 
 /**
  * Crea un link de checkout Onvo (un solo uso) para la suscripción mensual.
@@ -40,9 +77,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Industria no válida" }, { status: 400 });
   }
 
-  // Sin llave de Onvo (ni las direcciones de las apps), cobra y revisa la página del sistema.
+  // Sin llave de Onvo propia, el link lo arma el sistema anterior.
   if (!onvoConfigured()) {
-    return NextResponse.json({ url: `${ACTIVAR_RESPALDO}?vertical=${encodeURIComponent(verticalId)}` });
+    const url = await linkDelSistemaAnterior(verticalId, origenPropio(request));
+    return NextResponse.json({ url: url ?? `${ACTIVAR_RESPALDO}?vertical=${encodeURIComponent(verticalId)}` });
   }
 
   if (!appUrlDeVertical(verticalId)) {
