@@ -119,8 +119,10 @@
     margin-top: calc(clamp(40px, 6.2vw, 108px) * -1.25);
   }
 
-  /* Las palabras largas (constructora, inmobiliaria) se achican para no tapar el mosaico. */
-  .ov-hero__linea--sol {
+  /* Las palabras largas (constructora, inmobiliaria) se achican para no tapar el
+     mosaico. Se achica la palabra, no el renglón: así la portada no cambia de
+     alto con cada palabra y lo de abajo no salta. */
+  .ov-hero__linea--sol > span {
     font-size: min(1em, calc(44cqi / (var(--len, 8) * 0.7)));
   }
 }

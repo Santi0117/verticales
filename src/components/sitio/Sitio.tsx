@@ -117,10 +117,13 @@ export default function Sitio({ year }: { year: number }) {
 
         <main>
           <Hero />
+          {/* El motor, lo primero después de la portada. */}
+          <div className="ov-negro">
+            <Motor />
+          </div>
           <Listas />
           <Nucleo />
           <div className="ov-negro">
-            <Motor />
             <Showcase alActivar={activarVertical} />
             <Base />
           </div>

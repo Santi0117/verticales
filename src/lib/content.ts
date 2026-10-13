@@ -1,4 +1,5 @@
 export const navLinks = [
+  { label: "El motor", href: "#motor" },
   { label: "Cómo funciona", href: "#como-funciona" },
   { label: "Industrias", href: "#industrias-imagenes" },
   { label: "Compara", href: "#comparativa" },

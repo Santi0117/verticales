@@ -236,7 +236,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          <a href="#industrias-listas" className="ov-hero__bajar">
+          <a href="#motor" className="ov-hero__bajar">
             Baja para recorrer
             <span aria-hidden>
               <Flecha dir="abajo" className="h-3.5 w-3.5" />

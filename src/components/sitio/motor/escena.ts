@@ -341,6 +341,38 @@ export function montarMotor(host: HTMLElement, seccion: HTMLElement, alCuadro: (
     mat.color.copy(tmp);
   };
   const reloj = new THREE.Clock();
+  // En el celular la cámara se acomoda sola: el motor (cerrado o abierto) entra
+  // entero en su recuadro, centrado, sin pasarse a los textos.
+  const encuadre = { dist: 16, x: 0, y: 1.2, cuadros: 0 };
+
+  /**
+   * Con lo que ocupa el motor en este cuadro, la cámara del siguiente: lo
+   * acerca o aleja hasta que llena el recuadro (con aire) y lo centra. Los
+   * primeros cuadros saltan directo; después se mueve suave.
+   */
+  const encuadrar = () => {
+    let [l, t, r, b] = [Infinity, Infinity, -Infinity, -Infinity];
+    for (const a of anclas) {
+      if (!a.visible) continue;
+      l = Math.min(l, a.l);
+      t = Math.min(t, a.t);
+      r = Math.max(r, a.r);
+      b = Math.max(b, a.b);
+    }
+    if (!Number.isFinite(l) || r - l < 1 || b - t < 1) return;
+    const k = Math.max((r - l) / (ancho * 0.88), (b - t) / (alto * 0.9));
+    const mundoPorPx = (2 * encuadre.dist * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))) / alto;
+    const meta = {
+      dist: Math.min(60, Math.max(4, encuadre.dist * k)),
+      x: encuadre.x + ((l + r) / 2 - ancho / 2) * mundoPorPx,
+      y: encuadre.y - ((t + b) / 2 - alto / 2) * mundoPorPx,
+    };
+    const suave = encuadre.cuadros < 6 ? 1 : 0.12;
+    encuadre.cuadros++;
+    encuadre.dist += (meta.dist - encuadre.dist) * suave;
+    encuadre.x += (meta.x - encuadre.x) * suave;
+    encuadre.y += (meta.y - encuadre.y) * suave;
+  };
 
   const cuadro = () => {
     const t = reloj.getElapsedTime();
@@ -356,7 +388,7 @@ export function montarMotor(host: HTMLElement, seccion: HTMLElement, alCuadro: (
     mats.accentLine.color.copy(blanco).lerp(tintaPapel, papel);
     mats.glass.opacity = 0.55 - papel * 0.25;
 
-    const vertical = camera.aspect < 1;
+    const vertical = ancho < 768;
     raton.x += (raton.tx - raton.x) * 0.06;
     raton.y += (raton.ty - raton.y) * 0.06;
     if (vertical) inclinado.rotation.set(-1.18, 0.14, 0.1);
@@ -380,9 +412,8 @@ export function montarMotor(host: HTMLElement, seccion: HTMLElement, alCuadro: (
     }
 
     if (vertical) {
-      const mira = 1.15 + ab * 0.55;
-      camera.position.set(0, mira + 0.3, 13 + ab * 13);
-      camera.lookAt(0, mira, 0);
+      camera.position.set(encuadre.x, encuadre.y + 0.3, encuadre.dist);
+      camera.lookAt(encuadre.x, encuadre.y, 0);
     } else {
       camera.position.set(ab * 0.6, 0.35 - ab * 0.2, 10.2 + ab * 5.2);
       camera.lookAt(ab * 0.6, 0, 0);
@@ -427,6 +458,8 @@ export function montarMotor(host: HTMLElement, seccion: HTMLElement, alCuadro: (
       if (Number.isFinite(minX)) Object.assign(a, { l: minX, t: minY, r: maxX, b: maxY });
       else Object.assign(a, { l: a.x, r: a.x, t: a.y, b: a.y });
     }
+
+    if (vertical) encuadrar();
 
     const tinta = color("ink", p);
     alCuadro({ p, bruto, abierto: ab, anclas, fondo: css(color("bg", p)), tinta: css(tinta), suave: css(tinta, 0.6) });

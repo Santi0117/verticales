@@ -144,9 +144,9 @@ export const MOTOR = {
 /** Las secciones, en orden: alimentan el contador de escenas. */
 export const ESCENAS = [
   "inicio",
+  "motor",
   "industrias-listas",
   "hecho",
-  "motor",
   "industrias-imagenes",
   "modulos",
   "industrias",

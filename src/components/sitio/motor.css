@@ -10,6 +10,11 @@
   height: 380vh;
 }
 
+/* Con "El motor" del menú se llega con la pantalla ya llena (las demás secciones dejan 90 px para el menú). */
+.ov .ov-motor[id] {
+  scroll-margin-top: -12px;
+}
+
 .ov-motor__pantalla {
   --m-fondo: #000;
   --m-tinta: #f8fafc;
@@ -161,15 +166,28 @@
     height: 300vh;
   }
 
+  /* El texto arriba y el motor en su propio espacio debajo: nunca se pisan. */
   .ov-motor__pantalla {
+    display: flex;
+    flex-direction: column;
     border-radius: 24px;
   }
 
   .ov-motor__texto {
-    left: 18px;
-    right: 18px;
-    top: calc(env(safe-area-inset-top, 0px) + 104px);
+    position: relative;
+    inset: auto;
+    flex: none;
     max-width: none;
+    padding: calc(env(safe-area-inset-top, 0px) + 92px) 18px 0;
+  }
+
+  .ov-motor__lienzo {
+    position: relative;
+    inset: auto;
+    order: 1;
+    flex: 1;
+    min-height: 0;
+    margin: 10px 0 calc(env(safe-area-inset-bottom, 0px) + 44px);
   }
 
   .ov-motor__h2 {
