@@ -24,6 +24,8 @@ function origenPropio(request: Request) {
     const { hostname, origin } = new URL(checkoutOriginFromRequest(request) ?? "");
     const propio =
       hostname === new URL(SITIO).hostname ||
+      // sistemas.onvisiondigital.com (con s) también es esta página en Vercel.
+      /^sistemas?\.onvisiondigital\.com$/.test(hostname) ||
       (hostname.startsWith("verticales") && hostname.endsWith(".vercel.app")) ||
       hostname === "localhost";
     if (propio) return origin;
